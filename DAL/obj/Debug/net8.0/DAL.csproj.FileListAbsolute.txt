@@ -12,3 +12,18 @@ C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\refint\DAL.dll
 C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\DAL.pdb
 C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
 C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\ref\DAL.dll
+E:\Gproject\DAL\bin\Debug\net8.0\DAL.deps.json
+E:\Gproject\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+E:\Gproject\DAL\bin\Debug\net8.0\DAL.dll
+E:\Gproject\DAL\bin\Debug\net8.0\DAL.pdb
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.dll
+E:\Gproject\DAL\obj\Debug\net8.0\refint\DAL.dll
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.pdb
+E:\Gproject\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+E:\Gproject\DAL\obj\Debug\net8.0\ref\DAL.dll

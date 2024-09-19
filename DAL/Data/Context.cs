@@ -15,7 +15,7 @@ namespace DAL.Data
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
-       // public DbSet<Product> Products { get; set; }
+        //public DbSet<Product> Products { get; set; }
         public DbSet<Villa> Villas { get; set; }
         public DbSet<Apartment> Apartments { get; set; }
         public DbSet<House> Houses { get; set; }

@@ -28,17 +28,17 @@ namespace DAL.Models
         public bool IsAvailable { get; set; }
 
         [ForeignKey("Agent")]
-        public int AgentId { get; set; } // Foreign Key to Agent
+        public int? AgentId { get; set; } // Foreign Key to Agent
 
         [ForeignKey("Agency")]
-        public int AgencyId { get; set; } // Foreign Key to Agency
+        public int? AgencyId { get; set; } // Foreign Key to Agency
 
         // Navigation Properties
         [InverseProperty("Products")]
-        public Agent Agent { get; set; }
+        public Agent? Agent { get; set; }
 
         [InverseProperty("Products")]
-        public Agency Agency { get; set; }
+        public Agency? Agency { get; set; }
 
     }
 }
