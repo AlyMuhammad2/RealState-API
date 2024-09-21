@@ -9,6 +9,9 @@
         public string Location { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsAvailable { get; set; }
+        public string PrimaryImg { get; set; }
+
+        public List<string> images { get; set; }
         public int NumberOfFloors { get; set; } 
 
         public bool HasSwimmingPool { get; set; } 

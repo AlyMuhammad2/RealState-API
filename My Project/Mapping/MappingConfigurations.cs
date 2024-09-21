@@ -14,7 +14,8 @@ namespace My_Project.Mapping
                .Map(dest => dest.Location, src => src.Location)
                .Map(dest => dest.IsAvailable, src => src.IsAvailable)
                .Map(dest => dest.AgencyName, src => src.Agency.Name)
-               .Map(dest => dest.AgentName, src => src.Agent.User.UserName);
+               .Map(dest => dest.AgentName, src => src.Agent.User.UserName)
+               .Map(dest => dest.ProductType, src => src.GetType().Name);;
             config.NewConfig<House, HouseRequestDTO>();
             config.NewConfig<House, HouesResponseDTO>()
                 .Map(dest => dest.AgencyName, src => src.Agency.Name)

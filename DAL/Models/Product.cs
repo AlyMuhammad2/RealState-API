@@ -37,6 +37,8 @@ namespace DAL.Models
 
         // Navigation Properties
 
+        public string? PrimaryImg { get; set; }
+        public List<string>? images { get; set; }
 
 
     }

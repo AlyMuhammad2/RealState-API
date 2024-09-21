@@ -14,6 +14,10 @@
         public bool HasGarage { get; set; }
         public bool HasBackyard { get; set; }
 
+        public string PrimaryImg { get; set; }
+
+        public List<string> images { get; set; }
+
         // Agency details
         public string AgencyName { get; set; }
         public string AgencyEmail { get; set; }

@@ -14,6 +14,9 @@
         public DateTime CreatedDate { get; set; }
 
         public bool IsAvailable { get; set; }
+        public string PrimaryImg { get; set; }
+
+        public List<string> images { get; set; }
 
         public int FloorNumber { get; set; } // رقم الطابق
         public bool HasElevatorAccess { get; set; } // هل يوجد مصعد؟

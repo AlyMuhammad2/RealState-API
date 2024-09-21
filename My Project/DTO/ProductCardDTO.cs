@@ -13,5 +13,10 @@
         public string AgencyName { get; set; }
 
         public string AgentName { get; set; }
+
+        public string PrimaryImg { get; set; }
+
+        public string ProductType { get; set; }
+
     }
 }

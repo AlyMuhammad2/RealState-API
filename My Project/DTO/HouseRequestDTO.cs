@@ -21,6 +21,9 @@
 
         public bool HasBackyard { get; set; }
 
+        public string PrimaryImg {  get; set; }
+
+        public List<string> images { get; set; }
         public int AgencyId { get; set; }
 
         public int AgentId { get; set; }
