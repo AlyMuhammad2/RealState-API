@@ -3,6 +3,8 @@ using DAL.Models;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using My_Project.DTO;
 
 namespace My_Project.Controllers
 {
@@ -19,46 +21,66 @@ namespace My_Project.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var Apartments = _unitOfWork.ApartmentRepository.GetAll();
-            return Ok(Apartments);
+            var Apartments = _unitOfWork.ApartmentRepository.GetAllWithInclude(
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+            if (Apartments == null)
+            {
+                return NotFound();
+            }
+
+            var ApartmentDto = (Apartments).Adapt<IEnumerable<ApartmentResponseDTO>>();
+
+
+            return Ok(ApartmentDto);
         }
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var Apartment = _unitOfWork.ApartmentRepository.Get(id);
-            return Ok(Apartment);
+            var Apartment = _unitOfWork.ApartmentRepository.GetWithInclude(id, e => e.Id == id,
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+            if (Apartment == null)
+            {
+                return NotFound();
+            }
+
+            var ApartmentDto = (Apartment).Adapt<ApartmentResponseDTO>();
+
+
+            return Ok(ApartmentDto);
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] Apartment Apartment)
+        public IActionResult Add([FromBody] ApartmentRequestDto ApartmentDTO)
         {
-            if (Apartment == null)
+            if (ApartmentDTO == null)
             {
                 return BadRequest();
             }
-            _unitOfWork.ApartmentRepository.Add(Apartment);
+            var Apartment = _unitOfWork.ApartmentRepository.Add(ApartmentDTO.Adapt<Apartment>());
             _unitOfWork.Save();
             return CreatedAtAction(nameof(Get), new { id = Apartment.Id }, Apartment);
 
         }
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Apartment Apartment)
+        public IActionResult Update(int id, [FromBody] ApartmentRequestDto Apartment)
         {
-            if (Apartment == null ||Apartment.Id!=id)
+            if (Apartment == null)
             {
                 return BadRequest();
             }
+
             var existingApartment = _unitOfWork.ApartmentRepository.Get(id);
-            if(existingApartment==null)
+            if (existingApartment == null)
             {
                 return NotFound();
             }
-
-          
             Apartment.Id = existingApartment.Id;
-           
-           _unitOfWork.ApartmentRepository.Update(Apartment.Adapt(existingApartment));
-            
+
+            _unitOfWork.ApartmentRepository.Update(Apartment.Adapt(existingApartment));
             _unitOfWork.Save();
 
             return NoContent();

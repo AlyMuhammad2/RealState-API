@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Gproject\\DAL\\DAL.csproj": {}
+    "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "E:\\Gproject\\DAL\\DAL.csproj": {
+    "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Gproject\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "E:\\Gproject\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\",
-        "outputPath": "E:\\Gproject\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mohamed Tarek\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -4305,11 +4305,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Gproject\\BLL\\BLL.csproj",
+      "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\BLL\\BLL.csproj",
       "projectName": "BLL",
-      "projectPath": "E:\\Gproject\\BLL\\BLL.csproj",
+      "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\BLL\\BLL.csproj",
       "packagesPath": "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\",
-      "outputPath": "E:\\Gproject\\BLL\\obj\\",
+      "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mohamed Tarek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4327,8 +4327,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Gproject\\DAL\\DAL.csproj": {
-              "projectPath": "E:\\Gproject\\DAL\\DAL.csproj"
+            "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj"
             }
           }
         }

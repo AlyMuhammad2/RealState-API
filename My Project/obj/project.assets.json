@@ -4812,11 +4812,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Gproject\\My Project\\My Project.csproj",
+      "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\My Project\\My Project.csproj",
       "projectName": "My Project",
-      "projectPath": "E:\\Gproject\\My Project\\My Project.csproj",
+      "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\My Project\\My Project.csproj",
       "packagesPath": "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\",
-      "outputPath": "E:\\Gproject\\My Project\\obj\\",
+      "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\My Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mohamed Tarek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4834,11 +4834,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\Gproject\\BLL\\BLL.csproj": {
-              "projectPath": "E:\\Gproject\\BLL\\BLL.csproj"
+            "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\BLL\\BLL.csproj"
             },
-            "E:\\Gproject\\DAL\\DAL.csproj": {
-              "projectPath": "E:\\Gproject\\DAL\\DAL.csproj"
+            "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj"
             }
           }
         }

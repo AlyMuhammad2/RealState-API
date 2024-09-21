@@ -2,9 +2,12 @@
 using BLL.Interfaces;
 using BLL.Services;
 using DAL.Data;
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 using YourProjectNamespace.Models;
 
 namespace My_Project
@@ -31,6 +34,9 @@ namespace My_Project
             builder.Services.AddDbContext<Context>(options =>
                                  options.UseSqlServer(builder.Configuration.GetConnectionString("DEV")));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            var mappingConfig = TypeAdapterConfig.GlobalSettings;
+            mappingConfig.Scan(Assembly.GetExecutingAssembly());
+            builder.Services.AddSingleton<IMapper>(new Mapper(mappingConfig));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

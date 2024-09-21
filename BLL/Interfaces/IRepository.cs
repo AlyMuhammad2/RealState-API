@@ -13,9 +13,13 @@ namespace BLL.Interfaces
         T Get(int id);
         void Update(T UpdatedEntity);
         void Delete(int id);
-        void Add(T entity);
+        T Add(T entity);
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
         IEnumerable<T> FilterIncluded(string Included, Func<T, bool> func);
         IEnumerable<T> GetAll(Func<T, bool> predicate);
+        IEnumerable<T> GetAllWithInclude(params Func<IQueryable<T>, IQueryable<T>>[] includeExpressions);
+        T GetWithInclude(int id, Expression<Func<T, bool>> predicate, params Func<IQueryable<T>, IQueryable<T>>[] includeExpressions);
+
+
     }
 }

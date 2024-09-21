@@ -27,3 +27,18 @@ E:\Gproject\DAL\obj\Debug\net8.0\refint\DAL.dll
 E:\Gproject\DAL\obj\Debug\net8.0\DAL.pdb
 E:\Gproject\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
 E:\Gproject\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\Mohamed Tarek\Desktop\gp2\DAL\obj\Debug\net8.0\ref\DAL.dll

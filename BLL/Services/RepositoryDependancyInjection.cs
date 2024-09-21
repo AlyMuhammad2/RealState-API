@@ -22,6 +22,7 @@ namespace BLL.Services
             services.AddScoped<IRepository<Villa>, Repository<Villa>>();
             services.AddScoped<IRepository<Subscription>, Repository<Subscription>>();
             services.AddScoped<IRepository<Payment>, Repository<Payment>>();
+            services.AddScoped<IRepository<Product>, Repository<Product>>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
