@@ -442,3 +442,4 @@ C:\Users\Mohamed Tarek\Desktop\gp2\My Project\obj\Debug\net8.0\refint\My Project
 C:\Users\Mohamed Tarek\Desktop\gp2\My Project\obj\Debug\net8.0\My Project.pdb
 C:\Users\Mohamed Tarek\Desktop\gp2\My Project\obj\Debug\net8.0\My Project.genruntimeconfig.cache
 C:\Users\Mohamed Tarek\Desktop\gp2\My Project\obj\Debug\net8.0\ref\My Project.dll
+C:\Users\Mohamed Tarek\Desktop\gp2\My Project\bin\Debug\net8.0\System.Linq.Dynamic.Core.dll
