@@ -29,7 +29,8 @@ namespace My_Project
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<Context>(options =>
-                                 options.UseSqlServer(builder.Configuration.GetConnectionString("DEV")));
+                                 options.UseSqlServer(builder.Configuration.GetConnectionString("DEV"),
+                                 b => b.MigrationsAssembly("My Project")));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             var app = builder.Build();
 
@@ -41,6 +42,7 @@ namespace My_Project
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

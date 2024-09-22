@@ -12,3 +12,33 @@ C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\refint\DAL.dll
 C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\DAL.pdb
 C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
 C:\Users\Windows\source\repos\My Project\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\Super\Desktop\Final Project ITI\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\Super\Desktop\Final Project ITI\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\Super\Desktop\Final Project ITI\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\Super\Desktop\Final Project ITI\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\Super\Desktop\Final Project ITI\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\DAL\obj\Debug\net8.0\ref\DAL.dll

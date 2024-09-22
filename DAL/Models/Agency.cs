@@ -20,6 +20,8 @@ namespace DAL.Models
 
         [ForeignKey("Owner")]
         public int OwnerId { get; set; } // Foreign Key to User
+        
+        public int NumOfAvailableAgents{ get; set; } 
 
         [ForeignKey("Subscription")]
         public int SubscriptionId { get; set; } // Foreign Key to Subscription
