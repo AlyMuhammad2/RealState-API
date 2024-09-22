@@ -24,11 +24,15 @@ namespace DAL.Data
         public DbSet<Agent> Agents { get; set; }
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
+       public DbSet<Product> Products { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.Entity<Product>()
+                       .HasDiscriminator<string>("ProductType")
+                       .HasValue<Apartment>("Apartment")
+                       .HasValue<House>("House")
+                       .HasValue<Villa>("Villa");
         }
     }
 }

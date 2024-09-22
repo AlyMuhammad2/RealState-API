@@ -3,6 +3,8 @@ using DAL.Models;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using My_Project.DTO;
 
 namespace My_Project.Controllers
 {
@@ -18,51 +20,74 @@ namespace My_Project.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetVillas()
+        public IActionResult GetAll()
         {
-            var villas = _unitOfWork.VillaRepository.GetAll();
-            return Ok(villas);
+            var Villas = _unitOfWork.VillaRepository.GetAllWithInclude(
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+            if (Villas == null)
+            {
+                return NotFound();
+            }
+
+            var VillaDto = (Villas).Adapt<IEnumerable<VillaResponseDTO>>();
+
+
+            return Ok(VillaDto);
         }
         [HttpGet("{id}")]
-        public IActionResult GetVilla(int id) 
+        public IActionResult Get(int id)
         {
-            var villa=_unitOfWork.VillaRepository.Get(id);
-            return Ok(villa);
+            var Villa = _unitOfWork.VillaRepository.GetWithInclude(id, e => e.Id == id,
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+            if (Villa == null)
+            {
+                return NotFound();
+            }
+
+            var VillaDto = (Villa).Adapt<VillaResponseDTO>();
+
+
+            return Ok(VillaDto);
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] Villa villa)
+        public IActionResult Add([FromBody] VillaRequestDto VillaDTO)
         {
-            if (villa == null)
+            if (VillaDTO == null)
             {
                 return BadRequest();
             }
-            _unitOfWork.VillaRepository.Add(villa);
+            var Villa = _unitOfWork.VillaRepository.Add(VillaDTO.Adapt<Villa>());
             _unitOfWork.Save();
-            return CreatedAtAction(nameof(GetVilla), new { id = villa.Id }, villa);
+            return CreatedAtAction(nameof(Get), new { id = Villa.Id }, Villa);
 
         }
         [HttpPut("{id}")]
-        public IActionResult updateVilla(int id, [FromBody] Villa villa)
+        public IActionResult Update(int id, [FromBody] VillaRequestDto Villa)
         {
-            if (villa == null)
+            if (Villa == null)
             {
                 return BadRequest();
             }
 
             var existingVilla = _unitOfWork.VillaRepository.Get(id);
-            if(existingVilla == null)
+            if (existingVilla == null)
             {
                 return NotFound();
             }
-            villa.Id = existingVilla.Id;
-            _unitOfWork.VillaRepository.Update(villa.Adapt(existingVilla));
+            Villa.Id = existingVilla.Id;
+
+            _unitOfWork.VillaRepository.Update(Villa.Adapt(existingVilla));
             _unitOfWork.Save();
 
             return NoContent();
         }
 
-            [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id) 
         {
             var existingVilla = _unitOfWork.VillaRepository.Get(id);

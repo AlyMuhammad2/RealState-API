@@ -9,7 +9,7 @@ namespace BLL.Interfaces
 {
     public interface IUnitOfWork
     {
-       // public IRepository<Product> ProductRepository { get; }
+       public IRepository<Product> ProductRepository { get; }
         public IRepository<Agency> AgencyRepository { get; }
         public IRepository<Agent> AgentRepository { get; }
         public IRepository<Apartment> ApartmentRepository { get; }
@@ -18,7 +18,6 @@ namespace BLL.Interfaces
         public IRepository<Payment> PaymentRepository { get; }
         public IRepository<Subscription> SubscriptionRepository { get; }
         public IRepository<tasks> TasksRepository {  get; }
-
         void Save();
     }
 }

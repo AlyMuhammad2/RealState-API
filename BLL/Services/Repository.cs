@@ -19,9 +19,10 @@ namespace BLL.Services
             this.applicationDbContext = applicationDbContext;
             set = applicationDbContext.Set<T>();
         }
-        public void Add(T entity)
+        public T Add(T entity)
         {
             set.Add(entity);
+            return entity;
         }
 
         public void Delete(int id)
@@ -48,13 +49,35 @@ namespace BLL.Services
         {
             return applicationDbContext.Set<T>().Where(predicate).ToList();
         }
+        
         public IEnumerable<T> FilterIncluded(string Included, Func<T, bool> func)
         {
             return applicationDbContext.Set<T>().Include(Included).Where(func);
         }
+      
         public IEnumerable<T> GetAll(Func<T, bool> predicate)
         {
             return set.ToList().Where(predicate);
+        }
+        public IEnumerable<T> GetAllWithInclude(params Func<IQueryable<T>, IQueryable<T>>[] includeExpressions)
+        {
+            IQueryable<T> query = applicationDbContext.Set<T>();
+
+            foreach (var includeExpression in includeExpressions)
+            {
+                query = includeExpression(query);
+            }
+
+            return query.ToList();
+        }
+        public T GetWithInclude(int id, Expression<Func<T, bool>> predicate, params Func<IQueryable<T>, IQueryable<T>>[] includeExpressions)
+        {
+            IQueryable<T> query = applicationDbContext.Set<T>();
+            foreach (var includeExpression in includeExpressions)
+            {
+                query = includeExpression(query);
+            }
+            return query.FirstOrDefault(predicate );
         }
     }
 }

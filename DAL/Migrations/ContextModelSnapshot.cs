@@ -138,11 +138,6 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
@@ -153,10 +148,21 @@ namespace DAL.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("PrimaryImg")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("images")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -164,9 +170,9 @@ namespace DAL.Migrations
 
                     b.HasIndex("AgentId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
 
-                    b.HasDiscriminator().HasValue("Product");
+                    b.HasDiscriminator<string>("ProductType").HasValue("Product");
 
                     b.UseTphMappingStrategy();
                 });

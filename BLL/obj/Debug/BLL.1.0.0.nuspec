@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>BLL</id>
+    <version>1.0.0</version>
+    <authors>BLL</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="900e29a150f9e7e11097e9bb449359375e4c3e25" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="DAL" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="8.0.8" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Mohamed Tarek\Desktop\gp2\BLL\bin\Debug\net8.0\BLL.runtimeconfig.json" target="lib\net8.0\BLL.runtimeconfig.json" />
+    <file src="C:\Users\Mohamed Tarek\Desktop\gp2\BLL\bin\Debug\net8.0\BLL.dll" target="lib\net8.0\BLL.dll" />
+  </files>
+</package>
