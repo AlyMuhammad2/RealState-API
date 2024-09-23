@@ -28,7 +28,7 @@ namespace BLL.Services
             services.AddScoped<IRepository<Payment>, Repository<Payment>>();
            // services.AddScoped<IRepository<UserProfile>, Repository<UserProfile>>();
             services.AddScoped<IUserProfile, UserProfile>();
-            services.AddScoped<ILogin, Login>();
+            services.AddScoped<IAuthentication, Authentication>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;

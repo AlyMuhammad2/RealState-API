@@ -2,10 +2,12 @@
 using DAL.Default;
 using DAL.DTO;
 using DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using YourProjectNamespace.Models;
 
 namespace My_Project.Controllers
@@ -24,16 +26,17 @@ namespace My_Project.Controllers
             userManager = _userManager;
             roleManager = _roleManager;
         }
-        [HttpGet]
-        public IActionResult GetAgencies()
+        [HttpGet("GetAgents")]
+        public IActionResult GetAgents(int AgencyId)
         {
-            var Agents = _unitOfWork.AgencyRepository.GetAll();
+
+            var Agents = _unitOfWork.AgentRepository.GetAll(a=> a.AgencyId == AgencyId);
             return Ok(Agents);
         }
         [HttpGet("{id}")]
-        public IActionResult GetAgncy(int id)
+        public IActionResult GetAgent(int id)
         {
-            var Agent = _unitOfWork.AgencyRepository.Get(id);
+            var Agent = _unitOfWork.AgentRepository.Get(id);
             if (Agent == null)
             {
                 return NotFound();
@@ -41,11 +44,12 @@ namespace My_Project.Controllers
             return Ok(Agent);
         }
         [HttpPost("{agencyId}/add-agent")]
+        //[Authorize(Roles = "Agency")]
         public async Task<IActionResult> CreateAgent(int agencyId, [FromBody] RegisterReq NewAgent)
         {
             if (NewAgent == null)
             {
-                return BadRequest();
+                return BadRequest("Invalid agent");
             }
             var Agency = _unitOfWork.AgencyRepository.Get(agencyId);
             var subscription = _unitOfWork.SubscriptionRepository.Get(Agency.SubscriptionId);
@@ -109,19 +113,53 @@ namespace My_Project.Controllers
 
             return NoContent();
         }
-        [HttpDelete("{id}")]
-        public IActionResult DeleteAgent(int id)
+        [HttpDelete("{agentId}")]
+        public async Task<IActionResult> DeleteAgent(int agentId)
         {
-            var agent = _unitOfWork.AgentRepository.Get(id);
+            var agent =  _unitOfWork.AgentRepository.Get(agentId);
             if (agent == null)
             {
-                return NotFound();
+                return NotFound("Agent not found.");
             }
 
-            _unitOfWork.AgencyRepository.Delete(agent.Id);
-            _unitOfWork.Save();
+            var agency =  _unitOfWork.AgencyRepository.Get(agent.AgencyId);
+            if (agency == null)
+            {
+                return NotFound("Agency not found.");
+            }
 
-            return NoContent();
+            var user = await userManager.FindByIdAsync(agent.UserId.ToString());
+            if (user != null)
+            {
+                // 1- Remove the user from all roles
+                var roles = await userManager.GetRolesAsync(user);
+                if (roles != null)
+                {
+                    foreach (var role in roles)
+                    {
+                        await userManager.RemoveFromRoleAsync(user, role);
+                    }
+                }
+
+                // 2- Delete the user
+                var result = await userManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    return BadRequest("Failed to delete the user associated with the agent.");
+                }
+            }
+            agency.NumOfAvailableAgents--;
+
+            try
+            {
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict("The agent has already been deleted or updated by another process.");
+            }
+
+            return Ok("Agent deleted successfully.");
         }
-    }
+        }
 }

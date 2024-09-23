@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using DAL.Data;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,9 @@ namespace BLL.Services
             this.VillaRepository = VillaRepository;
             this.ApartmentRepository = ApartmentRepository;
         }
-       // public IRepository<Product> ProductRepository { get;}
+        public Context ApplicationDbContext => context;
+
+        // public IRepository<Product> ProductRepository { get;}
         public IRepository<Agency> AgencyRepository {  get;}
         public IRepository<Agent> AgentRepository { get;}
         public IRepository<Apartment> ApartmentRepository { get;}

@@ -442,3 +442,6 @@ C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\obj\Debug\net8
 C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\obj\Debug\net8.0\My Project.pdb
 C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\obj\Debug\net8.0\My Project.genruntimeconfig.cache
 C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\obj\Debug\net8.0\ref\My Project.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\My Project\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.Data;
 
 namespace BLL.Interfaces
 {
-    public interface ILogin
+    public interface IAuthentication
     {
         public  Task<AuthResponse?> LoginAuth(string email, string password , CancellationToken cancellationToken=default);
         public  Task<AuthResponse?> GetRefreshToken(string token, string refreshToken , CancellationToken cancellationToken=default);

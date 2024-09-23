@@ -16,7 +16,7 @@ using DAL.Default;
 
 namespace BLL.Services
 {
-    public class Login : ILogin
+    public class Authentication : IAuthentication
     {
         private readonly UserManager<User> UserManager;
         private readonly ITokenGenerator tokenGenerator;
@@ -24,7 +24,7 @@ namespace BLL.Services
         private readonly int ExpireDays = 20;
         private readonly RoleManager<Role> _roleManager;
         private readonly IUnitOfWork unitOfWork; 
-        public Login( UserManager<User> _userManager , ITokenGenerator _tokenGenerator , 
+        public Authentication( UserManager<User> _userManager , ITokenGenerator _tokenGenerator , 
             SignInManager<User> signInManager , RoleManager<Role> roleManager, IUnitOfWork _unitOfWork) 
         {
             unitOfWork = _unitOfWork;

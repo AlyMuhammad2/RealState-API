@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using DAL.Data;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace BLL.Interfaces
 {
     public interface IUnitOfWork
     {
-       // public IRepository<Product> ProductRepository { get; }
+        // public IRepository<Product> ProductRepository { get; }
+        public Context ApplicationDbContext { get; }
+
         public IRepository<Agency> AgencyRepository { get; }
         public IRepository<Agent> AgentRepository { get; }
         public IRepository<Apartment> ApartmentRepository { get; }
