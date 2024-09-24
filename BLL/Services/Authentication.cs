@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YourProjectNamespace.Models;
 using DAL.Models;
+using Microsoft.AspNetCore.Identity.Data;
 using DAL.Default;
 
 

@@ -3,12 +3,19 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.cs
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace DAL.Migrations
 {
     /// <inheritdoc />
     public partial class in1 : Migration
+========
+namespace My_Project.Migrations
+{
+    /// <inheritdoc />
+    public partial class refreshtokenTables : Migration
+>>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -192,11 +199,16 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.cs
                 name: "RefreshToken",
+========
+                name: "RefreshTokens",
+>>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.cs
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.cs
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpireOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -208,6 +220,19 @@ namespace DAL.Migrations
                     table.PrimaryKey("PK_RefreshToken", x => new { x.UserId, x.Id });
                     table.ForeignKey(
                         name: "FK_RefreshToken_AspNetUsers_UserId",
+========
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpireOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    createdOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RevokeOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_AspNetUsers_UserId",
+>>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.cs
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -466,6 +491,11 @@ namespace DAL.Migrations
                 column: "AgentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tasks_AgentId",
                 table: "Tasks",
                 column: "AgentId");
@@ -497,6 +527,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "RefreshToken");
+
+            migrationBuilder.DropTable(
+                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "Tasks");

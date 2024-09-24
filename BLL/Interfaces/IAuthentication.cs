@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL.DTO;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace BLL.Interfaces
 {
