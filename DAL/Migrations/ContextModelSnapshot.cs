@@ -4,24 +4,16 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace My_Project.Migrations
+namespace DAL.Migrations
 {
     [DbContext(typeof(Context))]
-<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.Designer.cs
-    [Migration("20240923143529_in1")]
-    partial class in1
-========
-    [Migration("20240917071820_refreshtokenTables")]
-    partial class refreshtokenTables
->>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.Designer.cs
+    partial class ContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +47,7 @@ namespace My_Project.Migrations
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubscriptionId")
+                    b.Property<int?>("SubscriptionId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -186,37 +178,6 @@ namespace My_Project.Migrations
                     b.HasDiscriminator<string>("ProductType").HasValue("Product");
 
                     b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("DAL.Models.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("ExpireOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("RevokeOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("createdOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("DAL.Models.Role", b =>
@@ -547,7 +508,7 @@ namespace My_Project.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN2WOdia8SaSnZKMgOhHDGGmh4V7MyDVmYR97hoGZ77b2Dbk/vTsW08+f60ML1Z3kA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKxlik8qP/KfhK1rzPHMur7u2ziNrHpdug0kIE9isSsg+MRe+Ms2Ct8Rj1ZQHShCmQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "87BF92C9EF0249CDA210D85D1A851AH1",
                             TwoFactorEnabled = false,
@@ -610,9 +571,7 @@ namespace My_Project.Migrations
 
                     b.HasOne("DAL.Models.Subscription", "Subscription")
                         .WithMany("Agencies")
-                        .HasForeignKey("SubscriptionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubscriptionId");
 
                     b.Navigation("Owner");
 
@@ -662,17 +621,6 @@ namespace My_Project.Migrations
                     b.Navigation("Agency");
 
                     b.Navigation("Agent");
-                });
-
-            modelBuilder.Entity("DAL.Models.RefreshToken", b =>
-                {
-                    b.HasOne("YourProjectNamespace.Models.User", "user")
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("DAL.Models.tasks", b =>
@@ -816,8 +764,6 @@ namespace My_Project.Migrations
                         .IsRequired();
 
                     b.Navigation("OwnedAgencies");
-
-                    b.Navigation("RefreshTokens");
 
                     b.Navigation("UserRoles");
                 });

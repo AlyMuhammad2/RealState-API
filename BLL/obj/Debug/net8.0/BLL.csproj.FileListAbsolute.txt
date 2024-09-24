@@ -69,3 +69,21 @@ C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\BLL\bin\Debug\net8.0\DAL.
 C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
 C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\BLL\obj\Debug\net8.0\BLL.genruntimeconfig.cache
 C:\Users\Super\Desktop\asdasdasdadas\Final Project ITI\BLL\obj\Debug\net8.0\ref\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.sourcelink.json
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug\net8.0\BLL.runtimeconfig.json
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug\net8.0\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug\net8.0\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.genruntimeconfig.cache
+C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\ref\BLL.dll

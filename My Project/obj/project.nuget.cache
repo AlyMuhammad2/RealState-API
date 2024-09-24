@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "7y68f4Pj04s=",
+  "dgSpecHash": "Nn3ezac5Zc4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\My Project\\My Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",

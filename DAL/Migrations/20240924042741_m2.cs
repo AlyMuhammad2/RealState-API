@@ -3,19 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.cs
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class in1 : Migration
-========
-namespace My_Project.Migrations
-{
-    /// <inheritdoc />
-    public partial class refreshtokenTables : Migration
->>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.cs
+    public partial class m2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -199,16 +192,11 @@ namespace My_Project.Migrations
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.cs
                 name: "RefreshToken",
-========
-                name: "RefreshTokens",
->>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.cs
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-<<<<<<<< HEAD:My Project/Migrations/20240923143529_in1.cs
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpireOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -220,19 +208,6 @@ namespace My_Project.Migrations
                     table.PrimaryKey("PK_RefreshToken", x => new { x.UserId, x.Id });
                     table.ForeignKey(
                         name: "FK_RefreshToken_AspNetUsers_UserId",
-========
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExpireOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    createdOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RevokeOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RefreshTokens_AspNetUsers_UserId",
->>>>>>>> 985c5053e1e06e3ffa1edaa6617fc04843858122:My Project/Migrations/20240917071820_refreshtokenTables.cs
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -284,7 +259,7 @@ namespace My_Project.Migrations
                 {
                     table.PrimaryKey("PK_Agents", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Agents_Agencies_AgencyId",    
+                        name: "FK_Agents_Agencies_AgencyId",
                         column: x => x.AgencyId,
                         principalTable: "Agencies",
                         principalColumn: "Id",
@@ -398,7 +373,7 @@ namespace My_Project.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "Email", "EmailConfirmed", "LastLoginDate", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "35d2bbc6-bc54-4248-a172-a77de3ae2321", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", true, null, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAIAAYagAAAAEN2WOdia8SaSnZKMgOhHDGGmh4V7MyDVmYR97hoGZ77b2Dbk/vTsW08+f60ML1Z3kA==", null, false, "87BF92C9EF0249CDA210D85D1A851AH1", false, "admin" });
+                values: new object[] { 1, 0, "35d2bbc6-bc54-4248-a172-a77de3ae2321", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", true, null, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAIAAYagAAAAEODz7fHdhEETCMdLWfxMi7btkqMe0vdy+U9m1q+mdSj5S5mqQ1HWLw12KFuHhpg2mQ==", null, false, "87BF92C9EF0249CDA210D85D1A851AH1", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -491,11 +466,6 @@ namespace My_Project.Migrations
                 column: "AgentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RefreshTokens_UserId",
-                table: "RefreshTokens",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Tasks_AgentId",
                 table: "Tasks",
                 column: "AgentId");
@@ -527,9 +497,6 @@ namespace My_Project.Migrations
 
             migrationBuilder.DropTable(
                 name: "RefreshToken");
-
-            migrationBuilder.DropTable(
-                name: "RefreshTokens");
 
             migrationBuilder.DropTable(
                 name: "Tasks");

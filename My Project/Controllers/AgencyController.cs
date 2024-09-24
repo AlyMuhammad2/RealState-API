@@ -52,7 +52,7 @@ namespace My_Project.Controllers
                 return BadRequest("Invalid agent");
             }
             var Agency = _unitOfWork.AgencyRepository.Get(agencyId);
-            var subscription = _unitOfWork.SubscriptionRepository.Get(Agency.SubscriptionId);
+            var subscription = _unitOfWork.SubscriptionRepository.Get((int)Agency.SubscriptionId);
             if (Agency.NumOfAvailableAgents >= subscription.NumOfAgents)
             {
                 return BadRequest("No available agents");

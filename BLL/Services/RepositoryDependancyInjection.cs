@@ -19,7 +19,6 @@ namespace BLL.Services
     {
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddAuthConfig();
             // Register repositories
             services.AddScoped<IRepository<Agency>, Repository<Agency>>();
             services.AddScoped<IRepository<Agent>, Repository<Agent>>();
@@ -76,46 +75,5 @@ namespace BLL.Services
             return services;
         }
 
-        public static IServiceCollection AddAuthConfig(this IServiceCollection services)
-        {
-            services.AddSingleton<ITokenGenerator, TokenGenerator>();
-
-            // Add Identity Services
-            services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<Context>()
-                .AddDefaultTokenProviders();
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequiredUniqueChars = 0;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
-              //  options.SignIn.RequireConfirmedAccount = true;
-                options.User.RequireUniqueEmail = true;
-            });
-
-            // Add JWT Authentication
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(o =>
-            {
-                o.SaveToken = true;
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("@#$ew786324AhmedAdel9872346AAkvcjfiqwkzxAK")),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = true
-                };
-            });
-
-            return services;
-        }
     }
 }
