@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "xgVtVAfh7TA=",
+  "dgSpecHash": "sfNcknzjUzc=",
   "success": true,
   "projectFilePath": "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
-    "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.8\\microsoft.aspnetcore.cryptography.internal.8.0.8.nupkg.sha512",
     "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.8\\microsoft.aspnetcore.cryptography.keyderivation.8.0.8.nupkg.sha512",
