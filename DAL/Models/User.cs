@@ -23,5 +23,8 @@ namespace YourProjectNamespace.Models
         // One-to-One relationship with Agent
         [InverseProperty("User")]
         public Agent AgentProfile { get; set; } // Associated agent profile
+
+        public List<RefreshToken> RefreshTokens { get; set; } = [];
+
     }
 }

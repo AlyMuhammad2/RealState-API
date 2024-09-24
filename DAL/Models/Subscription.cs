@@ -15,6 +15,8 @@ namespace DAL.Models
         [Required]
         [StringLength(50)]
         public string SubscriptionType { get; set; } // e.g., Monthly, Yearly
+        public int NumOfAgents { get; set; }
+
 
         public decimal Price { get; set; }
         public int DurationMonths { get; set; }

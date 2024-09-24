@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj": {}
+    "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj": {
+    "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\gp2\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\Final Project ITI\\Final Project ITI\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mohamed Tarek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.10.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.8, )"

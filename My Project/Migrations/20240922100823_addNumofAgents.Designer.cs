@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DAL.Migrations
+namespace My_Project.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240921210711_primaryimg")]
-    partial class primaryimg
+    [Migration("20240922100823_addNumofAgents")]
+    partial class addNumofAgents
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,12 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("NumOfAvailableAgents")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumofAgents")
+                        .HasColumnType("int");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
@@ -128,10 +134,10 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AgencyId")
+                    b.Property<int>("AgencyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AgentId")
+                    b.Property<int>("AgentId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -140,6 +146,11 @@ namespace DAL.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
@@ -151,21 +162,10 @@ namespace DAL.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("PrimaryImg")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductType")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("images")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -173,11 +173,42 @@ namespace DAL.Migrations
 
                     b.HasIndex("AgentId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
 
-                    b.HasDiscriminator<string>("ProductType").HasValue("Product");
+                    b.HasDiscriminator().HasValue("Product");
 
                     b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("DAL.Models.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ExpireOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("RevokeOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("createdOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("DAL.Models.Role", b =>
@@ -212,6 +243,32 @@ namespace DAL.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "35d2aakk-bc54-4248-a172-a77de3ae2321",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN",
+                            RoleName = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "35d2aakk-bc54-5678-a172-a77de3kk2321",
+                            Name = "Agency",
+                            NormalizedName = "AGENCY",
+                            RoleName = "Agency"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConcurrencyStamp = "99d2aakk-bc54-5628-a172-a77de3gk8977",
+                            Name = "Agent",
+                            NormalizedName = "AGENT",
+                            RoleName = "Agent"
+                        });
                 });
 
             modelBuilder.Entity("DAL.Models.Subscription", b =>
@@ -366,6 +423,13 @@ namespace DAL.Migrations
                     b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -459,6 +523,25 @@ namespace DAL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "35d2bbc6-bc54-4248-a172-a77de3ae2321",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@admin.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJbupAxyOj2baHVf4IJ1VCsFDiv3XyHrgE8+JkuHooO4AddVCE6pFGBvsPOGgBH3BQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "87BF92C9EF0249CDA210D85D1A851AH1",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("DAL.Models.Apartment", b =>
@@ -559,15 +642,30 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Models.Agency", "Agency")
                         .WithMany("Products")
-                        .HasForeignKey("AgencyId");
+                        .HasForeignKey("AgencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DAL.Models.Agent", "Agent")
                         .WithMany("Products")
-                        .HasForeignKey("AgentId");
+                        .HasForeignKey("AgentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Agency");
 
                     b.Navigation("Agent");
+                });
+
+            modelBuilder.Entity("DAL.Models.RefreshToken", b =>
+                {
+                    b.HasOne("YourProjectNamespace.Models.User", "user")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("DAL.Models.tasks", b =>
@@ -672,6 +770,8 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("OwnedAgencies");
+
+                    b.Navigation("RefreshTokens");
 
                     b.Navigation("UserRoles");
                 });
