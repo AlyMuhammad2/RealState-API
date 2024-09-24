@@ -7,7 +7,7 @@ using System.Data;
 
 namespace YourProjectNamespace.Models
 {
-    public class User : IdentityUser<int>  
+    public class User : IdentityUser<int>
     {
 
         public DateTime CreatedDate { get; set; }
@@ -23,5 +23,8 @@ namespace YourProjectNamespace.Models
         // One-to-One relationship with Agent
         [InverseProperty("User")]
         public Agent AgentProfile { get; set; } // Associated agent profile
+
+        public List<RefreshToken> RefreshTokens { get; set; } = [];
+
     }
 }

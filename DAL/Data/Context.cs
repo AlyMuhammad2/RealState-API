@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using DAL.EntitiesConfig;
+using DAL.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,6 +29,9 @@ namespace DAL.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new RoleConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new UserRoleConfig());
             modelBuilder.Entity<Product>()
                        .HasDiscriminator<string>("ProductType")
                        .HasValue<Apartment>("Apartment")

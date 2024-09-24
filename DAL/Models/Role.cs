@@ -10,7 +10,6 @@ namespace DAL.Models
 {
     public class Role : IdentityRole<int>
     {
-        public int Id { get; set; }
         public string RoleName { get; set; }
 
         public ICollection<IdentityUserRole<int>> UserRoles { get; set; }

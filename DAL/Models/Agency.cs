@@ -20,9 +20,11 @@ namespace DAL.Models
 
         [ForeignKey("Owner")]
         public int OwnerId { get; set; } // Foreign Key to User
+        
+        public int NumOfAvailableAgents { get; set; }
 
         [ForeignKey("Subscription")]
-        public int SubscriptionId { get; set; } // Foreign Key to Subscription
+        public int? SubscriptionId { get; set; } // Foreign Key to Subscription
 
         public DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
@@ -31,14 +33,14 @@ namespace DAL.Models
         [InverseProperty("OwnedAgencies")]
         public User Owner { get; set; }
 
-        public Subscription Subscription { get; set; }
+        public Subscription? Subscription { get; set; }
 
         // One-to-Many relationship with Agents
         public ICollection<Agent> Agents { get; set; }
 
         // One-to-Many relationship with Payments
-        public ICollection<Payment> Payments {get; set;}
-       
+        public ICollection<Payment> Payments { get; set; }
+
         [InverseProperty("Agency")]
         public ICollection<Product> Products { get; set; } // One-to-Many relationship with Product
 

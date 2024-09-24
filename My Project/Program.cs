@@ -37,6 +37,8 @@ namespace My_Project
             var mappingConfig = TypeAdapterConfig.GlobalSettings;
             mappingConfig.Scan(Assembly.GetExecutingAssembly());
             builder.Services.AddSingleton<IMapper>(new Mapper(mappingConfig));
+            builder.Services.AddRepositories();
+            builder.Services.AddAuthConfig();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -47,7 +49,7 @@ namespace My_Project
             }
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

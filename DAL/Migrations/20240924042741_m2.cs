@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class inits : Migration
+    public partial class m2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,6 +64,7 @@ namespace DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SubscriptionType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    NumOfAgents = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DurationMonths = table.Column<int>(type: "int", nullable: false)
                 },
@@ -189,6 +192,29 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RefreshToken",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpireOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    createdOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RevokeOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshToken", x => new { x.UserId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_RefreshToken_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Agencies",
                 columns: table => new
                 {
@@ -196,6 +222,7 @@ namespace DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
+                    NumOfAvailableAgents = table.Column<int>(type: "int", nullable: false),
                     SubscriptionId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -269,7 +296,7 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -280,9 +307,11 @@ namespace DAL.Migrations
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    AgentId = table.Column<int>(type: "int", nullable: false),
-                    AgencyId = table.Column<int>(type: "int", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    AgentId = table.Column<int>(type: "int", nullable: true),
+                    AgencyId = table.Column<int>(type: "int", nullable: true),
+                    PrimaryImg = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    images = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductType = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     FloorNumber = table.Column<int>(type: "int", nullable: true),
                     HasElevatorAccess = table.Column<bool>(type: "bit", nullable: true),
                     NumberOfRooms = table.Column<int>(type: "int", nullable: true),
@@ -294,19 +323,17 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Product_Agencies_AgencyId",
+                        name: "FK_Products_Agencies_AgencyId",
                         column: x => x.AgencyId,
                         principalTable: "Agencies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Product_Agents_AgentId",
+                        name: "FK_Products_Agents_AgentId",
                         column: x => x.AgentId,
                         principalTable: "Agents",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -332,6 +359,26 @@ namespace DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, "35d2aakk-bc54-4248-a172-a77de3ae2321", "Admin", "ADMIN", "Admin" },
+                    { 2, "35d2aakk-bc54-5678-a172-a77de3kk2321", "Agency", "AGENCY", "Agency" },
+                    { 3, "99d2aakk-bc54-5628-a172-a77de3gk8977", "Agent", "AGENT", "Agent" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "Email", "EmailConfirmed", "LastLoginDate", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { 1, 0, "35d2bbc6-bc54-4248-a172-a77de3ae2321", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", true, null, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAIAAYagAAAAEODz7fHdhEETCMdLWfxMi7btkqMe0vdy+U9m1q+mdSj5S5mqQ1HWLw12KFuHhpg2mQ==", null, false, "87BF92C9EF0249CDA210D85D1A851AH1", false, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId", "RoleId1", "UserId1" },
+                values: new object[] { 1, 1, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agencies_OwnerId",
@@ -409,13 +456,13 @@ namespace DAL.Migrations
                 column: "AgencyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_AgencyId",
-                table: "Product",
+                name: "IX_Products_AgencyId",
+                table: "Products",
                 column: "AgencyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_AgentId",
-                table: "Product",
+                name: "IX_Products_AgentId",
+                table: "Products",
                 column: "AgentId");
 
             migrationBuilder.CreateIndex(
@@ -446,7 +493,10 @@ namespace DAL.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "RefreshToken");
 
             migrationBuilder.DropTable(
                 name: "Tasks");
