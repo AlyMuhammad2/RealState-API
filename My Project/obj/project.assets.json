@@ -2119,7 +2119,10 @@
         },
         "runtime": {
           "bin/placeholder/DAL.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
