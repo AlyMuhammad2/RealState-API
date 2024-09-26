@@ -44,5 +44,7 @@ namespace DAL.Models
         [InverseProperty("Agency")]
         public ICollection<Product> Products { get; set; } // One-to-Many relationship with Product
 
+        public ICollection<tasks> Tasks { get; set; }
+
     }
 }

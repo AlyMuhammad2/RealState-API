@@ -31,6 +31,7 @@ namespace BLL.Services
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IUserProfile, UserProfile>();
             services.AddScoped<IAuthentication, Authentication>();
+
             return services;
         }
             public static IServiceCollection AddAuthConfig(this IServiceCollection services)

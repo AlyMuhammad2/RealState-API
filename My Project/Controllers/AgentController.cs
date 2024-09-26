@@ -1,8 +1,15 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Abstractions;
+using BLL.Interfaces;
 using DAL.Models;
+using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
+using My_Project.Common;
+using My_Project.DTO;
+using System.Linq.Dynamic.Core;
 namespace My_Project.Controllers
 {
     [Route("api/[controller]")]
@@ -10,26 +17,32 @@ namespace My_Project.Controllers
     public class AgentController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly RoleManager<Role> roleManager;
 
         public AgentController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        [HttpGet]
-        public IActionResult GetAgents()
-        {
-            var Agents = _unitOfWork.AgentRepository.GetAll();
-            return Ok(Agents);
-        }
+      
         [HttpGet("{id}")]
         public IActionResult GetAgent(int id)
         {
-            var Agent = _unitOfWork.AgentRepository.Get(id);
-            if (Agent == null)
+            var agent = _unitOfWork.AgentRepository.GetWithInclude(id, e => e.Id == id,
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.User),
+                 query => query.Include(p => p.Agency),
+                 query => query.Include(p => p.Products),
+                 query => query.Include(p => p.Tasks)
+                );
+            if (agent == null)
             {
                 return NotFound();
             }
-            return Ok(Agent);
+
+            var agentDto = (agent).Adapt<AgentResponseDTO>();
+
+
+            return Ok(agentDto);
         }
         [HttpPost]
         public IActionResult CreateAgent([FromBody] Agent agent)
@@ -45,20 +58,22 @@ namespace My_Project.Controllers
             return CreatedAtAction(nameof(GetAgent), new { id = agent.Id }, agent);
         }
         [HttpPut("{id}")]
-        public IActionResult UpdateAgent(int id, [FromBody] Agent agent)
+        public IActionResult UpdateAgent(int id, [FromBody] AgentRequestDTO agent)
         {
-            if (agent == null || agent.Id != id)
+
+            if (agent == null)
             {
                 return BadRequest();
             }
 
-            var existingAgent = _unitOfWork.AgentRepository.Get(id);
-            if (existingAgent == null)
+            var existingagent = _unitOfWork.AgentRepository.Get(id);
+            if (existingagent == null)
             {
                 return NotFound();
             }
+            agent.id = existingagent.Id;
 
-            _unitOfWork.AgentRepository.Update(agent);
+            _unitOfWork.AgentRepository.Update(agent.Adapt(existingagent));
             _unitOfWork.Save();
 
             return NoContent();
@@ -77,5 +92,8 @@ namespace My_Project.Controllers
 
             return NoContent();
         }
+        
+       
+        
     }
 }

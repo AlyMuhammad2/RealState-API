@@ -15,6 +15,8 @@ namespace DAL.Models
 
         [ForeignKey("Agent")]
         public int AgentId { get; set; } // Foreign Key to Agent
+        [ForeignKey("Agency")]
+        public int AgencyId { get; set; } // Foreign Key to Agency
 
         [Required]
         public string TaskName { get; set; }
@@ -27,5 +29,7 @@ namespace DAL.Models
         // Navigation Property
         [InverseProperty("Tasks")]
         public Agent Agent { get; set; }
+        public Agency Agency { get; set; }
+
     }
 }

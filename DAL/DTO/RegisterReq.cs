@@ -11,7 +11,8 @@ namespace DAL.DTO
         string Name,
         string Email , 
         string Password, 
-        string ConfirmPassword
+        string ConfirmPassword,
+        string PhoneNumber
     );
    
 }

@@ -1,15 +1,18 @@
-﻿using BLL.Interfaces;
+﻿using BLL.Abstractions;
+using BLL.Interfaces;
 using DAL.Default;
 using DAL.DTO;
 using DAL.Models;
+using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using My_Project.Common;
+using My_Project.DTO;
 using YourProjectNamespace.Models;
-
 namespace My_Project.Controllers
 {
     [Route("api/[controller]")]
@@ -26,23 +29,47 @@ namespace My_Project.Controllers
             userManager = _userManager;
             roleManager = _roleManager;
         }
-        [HttpGet("GetAgents")]
-        public IActionResult GetAgents(int AgencyId)
-        {
-
-            var Agents = _unitOfWork.AgentRepository.GetAll(a => a.AgencyId == AgencyId);
-            return Ok(Agents);
-        }
+        //Agency Crud Operation
         [HttpGet("{id}")]
-        public IActionResult GetAgent(int id)
+        public IActionResult GetAgency(int id)
         {
-            var Agent = _unitOfWork.AgentRepository.Get(id);
-            if (Agent == null)
+            var Agency = _unitOfWork.AgencyRepository.GetWithInclude(id, e => e.Id == id,
+            query => query.Include(p => p.Agents),
+                 query => query.Include(p => p.Owner),
+                   query => query.Include(p => p.Products),
+                     query => query.Include(p => p.Subscription)
+             );
+            if (Agency == null)
             {
                 return NotFound();
             }
-            return Ok(Agent);
+
+            var AgencyDto = (Agency).Adapt<AgencyResponseDTO>();
+
+
+            return Ok(AgencyDto);
         }
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] AgencyRequestDTO agency)
+        {
+            if (agency == null)
+            {
+                return BadRequest();
+            }
+
+            var existingagency = _unitOfWork.AgencyRepository.Get(id);
+            if (existingagency == null)
+            {
+                return NotFound();
+            }
+            agency.Id = existingagency.Id;
+
+            _unitOfWork.AgencyRepository.Update(agency.Adapt(existingagency));
+            _unitOfWork.Save();
+
+            return NoContent();
+        }
+
         [HttpPost("{agencyId}/add-agent")]
         //[Authorize(Roles = "Agency")]
         public async Task<IActionResult> CreateAgent(int agencyId, [FromBody] RegisterReq NewAgent)
@@ -52,11 +79,11 @@ namespace My_Project.Controllers
                 return BadRequest("Invalid agent");
             }
             var Agency = _unitOfWork.AgencyRepository.Get(agencyId);
-            var subscription = _unitOfWork.SubscriptionRepository.Get((int)Agency.SubscriptionId);
-            if (Agency.NumOfAvailableAgents >= subscription.NumOfAgents)
-            {
-                return BadRequest("No available agents");
-            }
+            //var subscription = _unitOfWork.SubscriptionRepository.Get((int)Agency.SubscriptionId);
+            //if (Agency.NumOfAvailableAgents >= subscription.NumOfAgents)
+            //{
+            //    return BadRequest("No available agents");
+            //}
 
             var exsistingAgent = await userManager.FindByEmailAsync(NewAgent.Email);
             if (exsistingAgent != null)
@@ -67,7 +94,8 @@ namespace My_Project.Controllers
             var NewUser = new User
             {
                 Email = NewAgent.Email,
-                UserName = NewAgent.Name
+                UserName = NewAgent.Name,
+                PhoneNumber=NewAgent.PhoneNumber
 
 
             };
@@ -94,25 +122,7 @@ namespace My_Project.Controllers
 
             return Ok("Agent is added.");
         }
-        [HttpPut("{id}")]
-        public IActionResult UpdateAgent(int id, [FromBody] Agency agent)
-        {
-            if (agent == null || agent.Id != id)
-            {
-                return BadRequest();
-            }
-
-            var existingAgent = _unitOfWork.AgencyRepository.Get(id);
-            if (existingAgent == null)
-            {
-                return NotFound();
-            }
-
-            _unitOfWork.AgencyRepository.Update(agent);
-            _unitOfWork.Save();
-
-            return NoContent();
-        }
+       
         [HttpDelete("{agentId}")]
         public async Task<IActionResult> DeleteAgent(int agentId)
         {
@@ -161,5 +171,32 @@ namespace My_Project.Controllers
 
             return Ok("Agent deleted successfully.");
         }
+        [HttpGet]
+        [Route("{agencyid}/agents")]
+
+        public IActionResult GetAgents(int agencyid,[FromQuery] RequestFilters filters)
+        {
+            var AgentsQuery = _unitOfWork.AgentRepository.GetAllWithInclude(
+                  query => query.Where(x => string.IsNullOrEmpty(filters.SearchValue) ||
+                                       x.User.UserName.Contains(filters.SearchValue)),
+               query => query.Include(p => p.User),
+                 query => query.Include(p => p.Agency),
+                   query => query.Include(p => p.Products),
+                     query => query.Include(p => p.Tasks)
+               ).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filters.SortColumn))
+            {
+                AgentsQuery = AgentsQuery.OrderBy($"{filters.SortColumn} {filters.SortDirection}");
+            }
+            if (AgentsQuery == null)
+            {
+                return NotFound();
+            }
+            var paginatedAgents = PaginatedList<Agent>.Create(AgentsQuery, filters.pageNumber, filters.pageSize);
+            var AgentsDto = paginatedAgents.Items.Select(p => p.Adapt<AgentResponseDTO>()).ToList();
+            return Ok(AgentsDto);
         }
+ 
+    }
 }
