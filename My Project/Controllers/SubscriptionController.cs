@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DAL.Models;
+using Mapster;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using My_Project.DTO;
 
 namespace My_Project.Controllers
@@ -14,8 +19,11 @@ namespace My_Project.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
         [HttpPost]
-        public IActionResult CreateSubscription([FromBody] Subscription subscription)
+        //[Authorize(Roles = "Admin")]
+
+        public IActionResult CreateSubscription([FromBody] SubscriptionRequestDTO subscription)
         {
             if (!ModelState.IsValid)
             {
@@ -34,12 +42,13 @@ namespace My_Project.Controllers
             subscription.StartDate = DateTime.Now;
             subscription.IsActive = true;
 
-            _unitOfWork.SubscriptionRepository.Add(subscription);
+            _unitOfWork.SubscriptionRepository.Add(subscription.Adapt<Subscription>());
             _unitOfWork.Save();
 
             return CreatedAtAction(nameof(GetSubscriptionById), new { id = subscription.Id }, subscription);
         }
-      
+
+        //[Authorize(Roles = "Admin")]
 
 
         [HttpGet("{id}")]
@@ -58,72 +67,56 @@ namespace My_Project.Controllers
 
             return Ok(subscription);
         }
+        //[Authorize(Roles = "Admin")]
 
-        //[HttpGet]
-        //public  IActionResult GetAllSubscriptions()
-        //{
-        //    var subscriptions =  _unitOfWork.SubscriptionRepository.GetAll();
-        //    return Ok(subscriptions);
-        //}
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] SubscriptionRequestDTO subscription)
+        {
+            if (subscription == null)
+            {
+                return BadRequest();
+            }
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetSubscriptionById(int id)
-        //{
-        //    var subscription =  _unitOfWork.SubscriptionRepository.Get(id);
-        //    if (subscription == null)
-        //    {
-        //        return NotFound(new { message = "Subscription not found" });
-        //    }
+            var existingsubscription = _unitOfWork.SubscriptionRepository.Get(id);
+            if (existingsubscription == null)
+            {
+                return NotFound();
+            }
+            subscription.Id = existingsubscription.Id;
+            _unitOfWork.SubscriptionRepository.Update(subscription.Adapt(existingsubscription));
+            _unitOfWork.Save();
 
-        //    return Ok(subscription);
-        //}
+            return NoContent();
+        }
+        //[Authorize(Roles = "Admin")]
 
-        //[HttpPost]
-        //public IActionResult CreateSubscription([FromBody] Subscription subscription)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var existingsubscription = _unitOfWork.SubscriptionRepository.Get(id);
+            if (existingsubscription is null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.ApartmentRepository.Delete(existingsubscription.Id);
+            _unitOfWork.Save();
+            return NoContent();
 
-        //     _unitOfWork.SubscriptionRepository.Add(subscription);
-        //    _unitOfWork.Save();
 
-        //    return CreatedAtAction(nameof(GetSubscriptionById), new { id = subscription.Id }, subscription);
-        //}
+        }
+        [HttpGet]
 
-        //[HttpPut("{id}")]
-        //public  IActionResult UpdateSubscription(int id, [FromBody] Subscription subscription)
-        //{
-        //    var existingSubscription =  _unitOfWork.SubscriptionRepository.Get(id);
-        //    if (existingSubscription == null)
-        //    {
-        //        return NotFound(new { message = "Subscription not found" });
-        //    }
+        public IActionResult GetAllSubscriptions()
+        {
+            var subscriptions = _unitOfWork.SubscriptionRepository.GetAll( );
 
-        //    existingSubscription.SubscriptionType = subscription.SubscriptionType;
-        //    existingSubscription.Price = subscription.Price;
-        //    existingSubscription.Description = subscription.Description;
-        //    existingSubscription.IsActive = subscription.IsActive;
+            var subscriptionsDto = subscriptions.Adapt<List<SubscriptionResponseDTO>>();
 
-        //    _unitOfWork.Save();
+            return Ok(subscriptionsDto);
+        }
+       
 
-        //    return Ok(existingSubscription);
-        //}
-
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteSubscription(int id)
-        //{
-        //    var subscription =  _unitOfWork.SubscriptionRepository.Get(id);
-        //    if (subscription == null)
-        //    {
-        //        return NotFound(new { message = "Subscription not found" });
-        //    }
-
-        //    _unitOfWork.SubscriptionRepository.Delete(subscription.Id);
-        //    _unitOfWork.Save();
-
-        //    return NoContent();
-        //}
     }
+
 }
+

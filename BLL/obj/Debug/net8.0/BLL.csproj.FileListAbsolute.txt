@@ -105,3 +105,21 @@ C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.sou
 C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
 C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.genruntimeconfig.cache
 C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\ref\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\last\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Users\Mohamed Tarek\Desktop\last\BLL\bin\Debug\net8.0\BLL.runtimeconfig.json
+C:\Users\Mohamed Tarek\Desktop\last\BLL\bin\Debug\net8.0\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\last\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Users\Mohamed Tarek\Desktop\last\BLL\bin\Debug\net8.0\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\last\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.sourcelink.json
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\BLL.genruntimeconfig.cache
+C:\Users\Mohamed Tarek\Desktop\last\BLL\obj\Debug\net8.0\ref\BLL.dll

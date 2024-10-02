@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using My_Project.Common;
+using Microsoft.EntityFrameworkCore;
 namespace My_Project.Controllers
 {
     [Route("api/[controller]")]
@@ -58,27 +59,32 @@ namespace My_Project.Controllers
             }
         }
 
-        [HttpPost("subscribe")]
-        public IActionResult Subscribe([FromBody] SubscriptionRequest request)
+        [HttpPost("subscribe/{subid}")]
+        public IActionResult Subscribe(int subid)
         {
-            if (request == null || string.IsNullOrEmpty(request.TokenId))
+            var sub=_unitOfWork.SubscriptionRepository.Get(subid);
+            if (sub==null)
             {
                 return BadRequest("Invalid subscription details.");
             }
 
             try
             {
-                // هنا يمكنك إضافة منطق الاشتراك في النظام الخاص بك
-                var subscription = new DAL.Models.Subscription
+                var userName = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+                if (sub.UserType == "Agency")
                 {
-                    // إعداد الاشتراك بناءً على نوع الاشتراك
-                    // على سبيل المثال: تحديد مميزات الاشتراك بناءً على الخطة المختارة
-                };
+                    Agency subagency = _unitOfWork.AgencyRepository.FilterIncluded("Owner", a => a.Owner.UserName == userName);
 
-                // حفظ الاشتراك في قاعدة البيانات باستخدام _unitOfWork
-                _unitOfWork.SubscriptionRepository.Add(subscription);
+                    subagency.Subscription = sub;
+                }
+                else if (sub.UserType =="Agent")
+                {
+                    Agent subagent = _unitOfWork.AgentRepository.FilterIncluded("User", a => a.User.UserName == userName);
+
+                    subagent.Subscription = sub;
+                }
                 _unitOfWork.Save();
-
                 return Ok(new { Message = "Subscription created successfully." });
             }
             catch (Exception ex)

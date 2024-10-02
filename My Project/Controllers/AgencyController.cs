@@ -70,9 +70,9 @@ namespace My_Project.Controllers
             return NoContent();
         }
 
-        [HttpPost("{agencyId}/add-agent")]
-        //[Authorize(Roles = "Agency")]
-        public async Task<IActionResult> CreateAgent(int agencyId, [FromBody] RegisterReq NewAgent)
+        [HttpPost("{agencyId}/add-agency")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateAgency(int agencyId, [FromBody] RegisterReq NewAgent)
         {
             if (NewAgent == null)
             {
@@ -132,7 +132,7 @@ namespace My_Project.Controllers
                 return NotFound("Agent not found.");
             }
 
-            var agency = _unitOfWork.AgencyRepository.Get(agent.AgencyId);
+            var agency = _unitOfWork.AgencyRepository.Get((int)agent.AgencyId);
             if (agency == null)
             {
                 return NotFound("Agency not found.");
@@ -158,7 +158,7 @@ namespace My_Project.Controllers
                     return BadRequest("Failed to delete the user associated with the agent.");
                 }
             }
-            agency.NumOfAvailableAgents--;
+            agency.NumOfAvailableAgents++;
 
             try
             {

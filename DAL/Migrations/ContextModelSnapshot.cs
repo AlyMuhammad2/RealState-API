@@ -67,7 +67,7 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AgencyId")
+                    b.Property<int?>("AgencyId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -76,12 +76,17 @@ namespace DAL.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("SubscriptionId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AgencyId");
+
+                    b.HasIndex("SubscriptionId");
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -248,19 +253,42 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DurationMonths")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumOfAgents")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("NumOfAvailableAgents")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumOfAvailableproducts")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumOfimagesperproducts")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("NumOfsubs")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SubscriptionType")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -513,7 +541,7 @@ namespace DAL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAECp0ew4Z+zxQCOIAfUoa/i/8efKjObEvCubyQpxLOOVXS5dix59iyp91FAGd5ixjog==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEA+RvfS0fo/bGrSJiqi7PF9TSt7NJ7gDttYSd9blGUXcVhgFrNEUg08Fa7yBWI0qZA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "87BF92C9EF0249CDA210D85D1A851AH1",
                             TwoFactorEnabled = false,
@@ -587,9 +615,11 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Models.Agency", "Agency")
                         .WithMany("Agents")
-                        .HasForeignKey("AgencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AgencyId");
+
+                    b.HasOne("DAL.Models.Subscription", "Subscription")
+                        .WithMany("Agents")
+                        .HasForeignKey("SubscriptionId");
 
                     b.HasOne("YourProjectNamespace.Models.User", "User")
                         .WithOne("AgentProfile")
@@ -598,6 +628,8 @@ namespace DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Agency");
+
+                    b.Navigation("Subscription");
 
                     b.Navigation("User");
                 });
@@ -771,6 +803,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Models.Subscription", b =>
                 {
                     b.Navigation("Agencies");
+
+                    b.Navigation("Agents");
                 });
 
             modelBuilder.Entity("YourProjectNamespace.Models.User", b =>

@@ -12,7 +12,7 @@
         public string AgencyName { get; set; }
         public int TasksNumber { get; set; }
         public int ProductsNumber { get; set; }
-        public List<ProductCardDTO> Products { get; set; }
-        public List<TaskResponseDTO> Tasks { get; set; }
+        public List<ProductCardDTO>? Products { get; set; }
+        public List<TaskResponseDTO>? Tasks { get; set; }
     }
 }

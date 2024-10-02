@@ -9,7 +9,7 @@ namespace YourProjectNamespace.Models
 {
     public class User : IdentityUser<int>
     {
-
+        
         public DateTime CreatedDate { get; set; }
         public DateTime? LastLoginDate { get; set; }
 

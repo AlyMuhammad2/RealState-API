@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using DAL.Models;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +56,8 @@ namespace My_Project.Controllers
         }
 
         [HttpPost]
+    //    [Authorize(Roles = "Agent,Agency")]
+
         public IActionResult Add([FromBody]HouseRequestDTO houseDTO)
         {
             if (houseDTO == null)
@@ -67,6 +70,7 @@ namespace My_Project.Controllers
 
         }
         [HttpPut("{id}")]
+        //[Authorize(Roles = "Agent,Agency")]
         public IActionResult Update(int id, [FromBody] HouseRequestDTO house)
         {
             if (house == null)
@@ -84,10 +88,12 @@ namespace My_Project.Controllers
             _unitOfWork.HouseRepository.Update(house.Adapt(existingHouse));
             _unitOfWork.Save();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
+       // [Authorize(Roles = "Agent,Agency")]
+
         public IActionResult Delete(int id)
         {
             var existingHouse = _unitOfWork.HouseRepository.Get(id);

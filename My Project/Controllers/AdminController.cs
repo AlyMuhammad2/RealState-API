@@ -56,9 +56,9 @@ namespace My_Project.Controllers
         }
       
         [HttpPut("{id}")]
-        public IActionResult UpdateAgent(int id, [FromBody] Agency agent)
+        public IActionResult UpdateAgency(int id, [FromBody] Agency agency)
         {
-            if (agent == null || agent.Id != id)
+            if (agency == null || agency.Id != id)
             {
                 return BadRequest();
             }
@@ -69,7 +69,7 @@ namespace My_Project.Controllers
                 return NotFound();
             }
 
-            _unitOfWork.AgencyRepository.Update(agent);
+            _unitOfWork.AgencyRepository.Update(agency);
             _unitOfWork.Save();
 
             return NoContent();
@@ -90,7 +90,7 @@ namespace My_Project.Controllers
         }
         [HttpPost("add-agency")]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateAgency([FromBody] AgencyRegisterReq NewAgency)
+        public async Task<IActionResult> CreateAgency([FromBody] AgencyRegisterReq NewAgency,int? subid)
         {
             if (NewAgency == null)
             {
@@ -111,9 +111,6 @@ namespace My_Project.Controllers
                 UserName = NewAgency.Name,
                 PhoneNumber = NewAgency.PhoneNumber,
                 
-                
-
-
             };
             var result = await userManager.CreateAsync(NewUser, NewAgency.Password);
             if (!result.Succeeded)
@@ -130,13 +127,21 @@ namespace My_Project.Controllers
                 Name = NewAgency.AgencyName,
                 NumOfAvailableAgents=0,
                 OwnerId = NewUser.Id,
+               SubscriptionId= subid,
                 CreatedDate = DateTime.Now,
             };
+            var sub = _unitOfWork.SubscriptionRepository.Get((int)subid);
+            if (sub != null)
+            {
+                sub.Id = (int)subid;
+                sub.NumOfsubs++;
+               _unitOfWork.SubscriptionRepository.Update(sub);
+            }
    
             _unitOfWork.AgencyRepository.Add(Agency);
             _unitOfWork.Save();
 
-            return Ok("Agent is added.");
+            return Ok("Agency is added.");
         }
 
         //[HttpGet]

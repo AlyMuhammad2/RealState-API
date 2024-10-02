@@ -81,7 +81,12 @@ namespace My_Project.Mapping
                  .Map(dest => dest.TasksNumber, src => src.Tasks.Count)
                  .Map(dest => dest.Products, src => src.Products)
                  .Map(dest => dest.Tasks, src => src.Tasks);
-
+            config.NewConfig<Subscription, SubscriptionRequestDTO>();
+            config.NewConfig<Subscription, SubscriptionResponseDTO>()
+                  .Map(dest => dest.Id, src => src.Id);
+                 
+            TypeAdapterConfig.GlobalSettings.Default.PreserveReference(true);
+            TypeAdapterConfig.GlobalSettings.Default.IgnoreNullValues(true);
 
 
 

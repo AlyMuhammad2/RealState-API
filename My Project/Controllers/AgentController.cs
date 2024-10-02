@@ -45,6 +45,7 @@ namespace My_Project.Controllers
             return Ok(agentDto);
         }
         [HttpPost]
+        // [Authorize(Roles = "Agency")]
         public IActionResult CreateAgent([FromBody] Agent agent)
         {
             if (agent == null)
@@ -58,6 +59,7 @@ namespace My_Project.Controllers
             return CreatedAtAction(nameof(GetAgent), new { id = agent.Id }, agent);
         }
         [HttpPut("{id}")]
+        // [Authorize(Roles = "Agency")]
         public IActionResult UpdateAgent(int id, [FromBody] AgentRequestDTO agent)
         {
 
@@ -79,6 +81,7 @@ namespace My_Project.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
+        // [Authorize(Roles = "Agency")]
         public IActionResult DeleteAgent(int id)
         {
             var agent = _unitOfWork.AgentRepository.Get(id);

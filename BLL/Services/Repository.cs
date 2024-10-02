@@ -50,9 +50,9 @@ namespace BLL.Services
             return applicationDbContext.Set<T>().Where(predicate).ToList();
         }
         
-        public IEnumerable<T> FilterIncluded(string Included, Func<T, bool> func)
+        public T FilterIncluded(string Included, Func<T, bool> func)
         {
-            return applicationDbContext.Set<T>().Include(Included).Where(func);
+            return applicationDbContext.Set<T>().Include(Included).Where(func).FirstOrDefault();
         }
       
         public IEnumerable<T> GetAll(Func<T, bool> predicate)
@@ -79,5 +79,6 @@ namespace BLL.Services
             }
             return query.FirstOrDefault(predicate );
         }
+
     }
 }

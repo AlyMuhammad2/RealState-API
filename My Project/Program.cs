@@ -45,8 +45,12 @@ namespace My_Project
             builder.Services.AddSingleton<IMapper>(new Mapper(mappingConfig));
             builder.Services.AddRepositories();
             builder.Services.AddAuthConfig();
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("mypolicy", policy => policy.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());}); 
             var app = builder.Build();
+            app.UseCors("mypolicy");
+            app.UseRouting();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

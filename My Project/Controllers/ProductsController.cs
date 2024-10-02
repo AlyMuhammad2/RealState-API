@@ -50,7 +50,7 @@ namespace My_Project.Controllers
             return Ok(productCardDtos);
         }
         [HttpGet("agents/{AgentId}/products")]
-        [Authorize(Roles = "Agent")]
+     //   [Authorize(Roles = "Agent")]
         public IActionResult GetProductsByAgentId(int AgentId, [FromQuery] RequestFilters filters)
         {
             var productsQuery = _unitOfWork.ProductRepository.GetAllWithInclude(
@@ -76,7 +76,7 @@ namespace My_Project.Controllers
             return Ok(productCardDtos);
         }
         [HttpGet("agency/{AgencyId}/products")]
-        [Authorize(Roles = "Agency")]
+       // [Authorize(Roles = "Agency")]
         public IActionResult GetProductsByAgencyId(int AgencyId, [FromQuery] RequestFilters filters)
         {
             var productsQuery = _unitOfWork.ProductRepository.GetAllWithInclude(

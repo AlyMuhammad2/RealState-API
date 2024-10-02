@@ -1,6 +1,7 @@
 ﻿using BLL.Interfaces;
 using DAL.Models;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +55,8 @@ namespace My_Project.Controllers
         }
 
         [HttpPost]
+       // [Authorize(Roles = "Agent,Agency")]
+
         public IActionResult Add([FromBody] ApartmentRequestDto ApartmentDTO)
         {
             if (ApartmentDTO == null)
@@ -66,6 +69,7 @@ namespace My_Project.Controllers
 
         }
         [HttpPut("{id}")]
+        // [Authorize(Roles = "Agent,Agency")]
         public IActionResult Update(int id, [FromBody] ApartmentRequestDto Apartment)
         {
             if (Apartment == null)
@@ -87,6 +91,7 @@ namespace My_Project.Controllers
         }
 
         [HttpDelete("{id}")]
+        // [Authorize(Roles = "Agent,Agency")]
         public IActionResult Delete(int id)
         {
             var existingApartment = _unitOfWork.ApartmentRepository.Get(id);
