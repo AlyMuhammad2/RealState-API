@@ -87,3 +87,21 @@ C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\bin\Debug
 C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
 C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\BLL.genruntimeconfig.cache
 C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\BLL\obj\Debug\net8.0\ref\BLL.dll
+C:\Users\Windows\Source\Repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.dll
+C:\Users\Windows\Source\Repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\refint\BLL.dll
+C:\Users\Windows\Source\Repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.pdb
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\bin\Debug\net8.0\BLL.deps.json
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\bin\Debug\net8.0\BLL.runtimeconfig.json
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\bin\Debug\net8.0\BLL.dll
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\bin\Debug\net8.0\BLL.pdb
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\bin\Debug\net8.0\DAL.dll
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.AssemblyInfo.cs
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.sourcelink.json
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.csproj.Up2Date
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\BLL.genruntimeconfig.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\BLL\obj\Debug\net8.0\ref\BLL.dll

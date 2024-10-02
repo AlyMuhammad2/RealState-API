@@ -18,7 +18,7 @@ namespace DAL.Models
         public int UserId { get; set; } // Foreign Key to User
 
         [ForeignKey("Agency")]
-        public int AgencyId { get; set; } // Foreign Key to Agency
+        public int? AgencyId { get; set; } // Foreign Key to Agency
 
         public DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
@@ -29,6 +29,10 @@ namespace DAL.Models
 
         [InverseProperty("Agents")]
         public Agency Agency { get; set; }
+
+        [ForeignKey("Subscription")]
+        public int? SubscriptionId { get; set; }
+        public Subscription Subscription { get; set; }
 
         // One-to-Many relationship with Tasks
         public ICollection<tasks> Tasks { get; set; }

@@ -138,5 +138,44 @@ namespace My_Project.Controllers
 
             return Ok("Agent is added.");
         }
+
+        //[HttpGet]
+        //public  IActionResult GetAllSubscriptions()
+        //{
+        //    var subscriptions =  _unitOfWork.SubscriptionRepository.GetAll();
+        //    return Ok(subscriptions);
+        //}
+        //[HttpPut("{id}")]
+        //public  IActionResult UpdateSubscription(int id, [FromBody] Subscription subscription)
+        //{
+        //    var existingSubscription =  _unitOfWork.SubscriptionRepository.Get(id);
+        //    if (existingSubscription == null)
+        //    {
+        //        return NotFound(new { message = "Subscription not found" });
+        //    }
+
+        //    existingSubscription.SubscriptionType = subscription.SubscriptionType;
+        //    existingSubscription.Price = subscription.Price;
+        //    existingSubscription.Description = subscription.Description;
+        //    existingSubscription.IsActive = subscription.IsActive;
+
+        //    _unitOfWork.Save();
+
+        //    return Ok(existingSubscription);
+        //}
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteSubscription(int id)
+        //{
+        //    var subscription =  _unitOfWork.SubscriptionRepository.Get(id);
+        //    if (subscription == null)
+        //    {
+        //        return NotFound(new { message = "Subscription not found" });
+        //    }
+
+        //    _unitOfWork.SubscriptionRepository.Delete(subscription.Id);
+        //    _unitOfWork.Save();
+
+        //    return NoContent();
+        //}
     }
 }

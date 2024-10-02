@@ -148,7 +148,7 @@ namespace BLL.Services
                     Name = registerRequest.Name,
                     OwnerId = user.Id,
                     CreatedDate = DateTime.Now,
-                    SubscriptionId = 1
+                    SubscriptionId = null
                 }; 
                 unitOfWork.AgencyRepository.Add(agency);
                 unitOfWork.Save();

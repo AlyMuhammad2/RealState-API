@@ -6,9 +6,13 @@ using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using My_Project.Common;
+using Stripe;
+using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 using System.Reflection;
-using YourProjectNamespace.Models;
 
 namespace My_Project
 {
@@ -20,6 +24,8 @@ namespace My_Project
 
             // Add services to the container.
             RepositoryDependancyInjection.AddRepositories(builder.Services);
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+            StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
             builder.Services.AddControllers();
 
@@ -39,6 +45,7 @@ namespace My_Project
             builder.Services.AddSingleton<IMapper>(new Mapper(mappingConfig));
             builder.Services.AddRepositories();
             builder.Services.AddAuthConfig();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

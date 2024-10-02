@@ -1,50 +1,81 @@
 [
   {
-    "ContainingType": "My_Project.Controllers.AgencyController",
+    "ContainingType": "My_Project.Controllers.AdminController",
     "Method": "GetAgencies",
-    "RelativePath": "api/Agency",
+    "RelativePath": "Admin/Agency",
     "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "My_Project.Controllers.AgencyController",
-    "Method": "CreateAgent",
-    "RelativePath": "api/Agency",
-    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "agent",
-        "Type": "DAL.Models.Agency",
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AccountController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Account/ChangePassword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "request",
+        "Type": "SurveyBasket.Contracts.Users.ChangePasswordRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.AgencyController",
-    "Method": "GetAgncy",
-    "RelativePath": "api/Agency/{id}",
+    "ContainingType": "My_Project.Controllers.AccountController",
+    "Method": "Info",
+    "RelativePath": "api/Account/info",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.AgencyController",
+    "ContainingType": "My_Project.Controllers.AdminController",
     "Method": "UpdateAgent",
-    "RelativePath": "api/Agency/{id}",
+    "RelativePath": "api/Admin/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -63,9 +94,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.AgencyController",
+    "ContainingType": "My_Project.Controllers.AdminController",
     "Method": "DeleteAgent",
-    "RelativePath": "api/Agency/{id}",
+    "RelativePath": "api/Admin/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -79,13 +110,237 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.AgentController",
+    "ContainingType": "My_Project.Controllers.AdminController",
+    "Method": "CreateAgency",
+    "RelativePath": "api/Admin/add-agency",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NewAgency",
+        "Type": "My_Project.DTO.AgencyRegisterReq",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AgencyController",
+    "Method": "CreateAgent",
+    "RelativePath": "api/Agency/{agencyId}/add-agent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agencyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "NewAgent",
+        "Type": "DAL.DTO.RegisterReq",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.TasksController",
+    "Method": "Add",
+    "RelativePath": "api/agency/{AgencyId}/addTasks",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AgencyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "TaskDTO",
+        "Type": "My_Project.DTO.TaskRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AgencyController",
     "Method": "GetAgents",
-    "RelativePath": "api/Agent",
+    "RelativePath": "api/Agency/{agencyid}/agents",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "agencyid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.ProductsController",
+    "Method": "GetProductsByAgencyId",
+    "RelativePath": "api/agency/{AgencyId}/products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AgencyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.TasksController",
+    "Method": "GetByAgencyId",
+    "RelativePath": "api/agency/{AgencyId}/tasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AgencyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AgencyController",
+    "Method": "DeleteAgent",
+    "RelativePath": "api/Agency/{agentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AgencyController",
+    "Method": "GetAgency",
+    "RelativePath": "api/Agency/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AgencyController",
+    "Method": "Update",
+    "RelativePath": "api/Agency/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "agency",
+        "Type": "My_Project.DTO.AgencyRequestDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -100,6 +355,47 @@
         "Name": "agent",
         "Type": "DAL.Models.Agent",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.TasksController",
+    "Method": "GetByAgentId",
+    "RelativePath": "api/agent/{AgentId}/tasks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AgentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -135,7 +431,7 @@
       },
       {
         "Name": "agent",
-        "Type": "DAL.Models.Agent",
+        "Type": "My_Project.DTO.AgentRequestDTO",
         "IsRequired": true
       }
     ],
@@ -159,8 +455,85 @@
   },
   {
     "ContainingType": "My_Project.Controllers.ProductsController",
-    "Method": "GetProducts",
-    "RelativePath": "api/Products",
+    "Method": "GetProductsByAgentId",
+    "RelativePath": "api/agents/{AgentId}/products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AgentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.ProductsController",
+    "Method": "GetALL",
+    "RelativePath": "api/Allproducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.ApartmentController",
+    "Method": "GetAll",
+    "RelativePath": "api/Apartment",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -168,25 +541,25 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.ProductsController",
-    "Method": "CreateProduct",
-    "RelativePath": "api/Products",
+    "ContainingType": "My_Project.Controllers.ApartmentController",
+    "Method": "Add",
+    "RelativePath": "api/Apartment",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "product",
-        "Type": "DAL.Models.Product",
+        "Name": "ApartmentDTO",
+        "Type": "My_Project.DTO.ApartmentRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.ProductsController",
-    "Method": "GetProduct",
-    "RelativePath": "api/Products/{id}",
+    "ContainingType": "My_Project.Controllers.ApartmentController",
+    "Method": "Get",
+    "RelativePath": "api/Apartment/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -200,9 +573,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.ProductsController",
-    "Method": "UpdateProduct",
-    "RelativePath": "api/Products/{id}",
+    "ContainingType": "My_Project.Controllers.ApartmentController",
+    "Method": "Update",
+    "RelativePath": "api/Apartment/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -213,17 +586,276 @@
         "IsRequired": true
       },
       {
-        "Name": "product",
-        "Type": "DAL.Models.Product",
+        "Name": "Apartment",
+        "Type": "My_Project.DTO.ApartmentRequestDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "My_Project.Controllers.ProductsController",
-    "Method": "DeleteProduct",
-    "RelativePath": "api/Products/{id}",
+    "ContainingType": "My_Project.Controllers.ApartmentController",
+    "Method": "Delete",
+    "RelativePath": "api/Apartment/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AuthenticationController",
+    "Method": "Login",
+    "RelativePath": "api/Authentication",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "DAL.DTO.LoginRequestt",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AuthenticationController",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Authentication/refresh",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "DAL.DTO.RefreshTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.AuthenticationController",
+    "Method": "Register",
+    "RelativePath": "api/Authentication/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerRequest",
+        "Type": "DAL.DTO.RegisterReq",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.HouseController",
+    "Method": "GetAll",
+    "RelativePath": "api/House",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.HouseController",
+    "Method": "Add",
+    "RelativePath": "api/House",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "houseDTO",
+        "Type": "My_Project.DTO.HouseRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.HouseController",
+    "Method": "Get",
+    "RelativePath": "api/House/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.HouseController",
+    "Method": "Update",
+    "RelativePath": "api/House/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "house",
+        "Type": "My_Project.DTO.HouseRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.HouseController",
+    "Method": "Delete",
+    "RelativePath": "api/House/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.TasksController",
+    "Method": "Get",
+    "RelativePath": "api/task/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.TasksController",
+    "Method": "Delete",
+    "RelativePath": "api/task/delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.TasksController",
+    "Method": "Update",
+    "RelativePath": "api/task/update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Task",
+        "Type": "My_Project.DTO.TaskRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.VillaController",
+    "Method": "GetAll",
+    "RelativePath": "api/Villa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.VillaController",
+    "Method": "Add",
+    "RelativePath": "api/Villa",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "VillaDTO",
+        "Type": "My_Project.DTO.VillaRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.VillaController",
+    "Method": "Get",
+    "RelativePath": "api/Villa/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.VillaController",
+    "Method": "Update",
+    "RelativePath": "api/Villa/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Villa",
+        "Type": "My_Project.DTO.VillaRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "My_Project.Controllers.VillaController",
+    "Method": "Delete",
+    "RelativePath": "api/Villa/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

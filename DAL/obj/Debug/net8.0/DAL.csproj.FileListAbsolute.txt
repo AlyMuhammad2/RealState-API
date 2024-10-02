@@ -72,3 +72,18 @@ C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\DAL\obj\Debug
 C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\DAL\obj\Debug\net8.0\DAL.pdb
 C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
 C:\Users\Mohamed Tarek\Desktop\Final Project ITI\Final Project ITI\DAL\obj\Debug\net8.0\ref\DAL.dll
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\bin\Debug\net8.0\DAL.deps.json
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\bin\Debug\net8.0\DAL.runtimeconfig.json
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\bin\Debug\net8.0\DAL.dll
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\bin\Debug\net8.0\DAL.pdb
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.dll
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\refint\DAL.dll
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.pdb
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\DAL.genruntimeconfig.cache
+C:\Users\Windows\source\repos\AlyMuhammad2\API-Repo\DAL\obj\Debug\net8.0\ref\DAL.dll

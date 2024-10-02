@@ -1151,7 +1151,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8"
         },
         "runtime": {
-          "BLL.dll": {}
+          "BLL.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "DAL/1.0.0": {
@@ -1164,7 +1167,10 @@
           "Microsoft.Extensions.Identity.Stores": "8.0.8"
         },
         "runtime": {
-          "DAL.dll": {}
+          "DAL.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
