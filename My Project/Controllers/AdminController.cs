@@ -75,9 +75,9 @@ namespace My_Project.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteAgent(int id)
+        public IActionResult DeleteAgency(int id)
         {
-            var agent = _unitOfWork.AgentRepository.Get(id);
+            var agent = _unitOfWork.AgencyRepository.Get(id);
             if (agent == null)
             {
                 return NotFound();

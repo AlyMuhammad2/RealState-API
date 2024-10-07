@@ -1,0 +1,15 @@
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\bin\Release\net8.0\DAL.deps.json
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\bin\Release\net8.0\DAL.runtimeconfig.json
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\bin\Release\net8.0\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\bin\Release\net8.0\DAL.pdb
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.csproj.AssemblyReference.cache
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.AssemblyInfoInputs.cache
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.AssemblyInfo.cs
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.sourcelink.json
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\refint\DAL.dll
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.pdb
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\DAL.genruntimeconfig.cache
+C:\Users\Mohamed Tarek\Desktop\FLast\DAL\obj\Release\net8.0\ref\DAL.dll

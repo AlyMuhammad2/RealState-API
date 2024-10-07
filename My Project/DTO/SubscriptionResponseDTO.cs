@@ -2,7 +2,7 @@
 {
     public class SubscriptionResponseDTO
     {
-        public int Id;
+        public int SubId;
         public string SubscriptionType { get; set; } // "Free", "Monthly", or "Annual"
         public int DurationMonths { get; set; }
         public string UserType { get; set; }

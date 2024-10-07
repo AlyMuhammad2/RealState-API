@@ -124,39 +124,77 @@ namespace BLL.Services
                
             };
             var result = await UserManager.CreateAsync(user, registerRequest.Password);
-
+              
             if (result.Succeeded)
             {
-                IEnumerable<string> Roles = new List<string> { "Agency" };
-                var (Token, ExpireDate) = tokenGenerator.GenerateToken(user , Roles);
-                var refresh_token = GenerateRefreshToken();
-                var refresh_token_expiry = DateTime.Now.AddDays(ExpireDays);
-                user.RefreshTokens.Add(new RefreshToken
+                if (registerRequest.AccountType == "Agency")
                 {
-                    Token = refresh_token,
-                    ExpireOn = refresh_token_expiry
-                });
+                    IEnumerable<string> Roles = new List<string> { "Agency" };
+                    var (Token, ExpireDate) = tokenGenerator.GenerateToken(user, Roles);
+                    var refresh_token = GenerateRefreshToken();
+                    var refresh_token_expiry = DateTime.Now.AddDays(ExpireDays);
+                    user.RefreshTokens.Add(new RefreshToken
+                    {
+                        Token = refresh_token,
+                        ExpireOn = refresh_token_expiry
+                    });
 
-                await UserManager.UpdateAsync(user);
-                var role = await _roleManager.FindByNameAsync(DefaultRoles.AgencyRoleName);
-                if (role != null)
-                {
-                    await UserManager.AddToRoleAsync(user, role.Name);
+
+                    await UserManager.UpdateAsync(user);
+                    var role = await _roleManager.FindByNameAsync(DefaultRoles.AgencyRoleName);
+                    if (role != null)
+                    {
+                        await UserManager.AddToRoleAsync(user, role.Name);
+                    }
+                    var agency = new Agency
+                    {
+                        Name = registerRequest.Name,
+                        OwnerId = user.Id,
+                        CreatedDate = DateTime.Now,
+                        SubscriptionId = null
+                    };
+                    unitOfWork.AgencyRepository.Add(agency);
+                    unitOfWork.Save();
+                    var response = new AuthResponse(user.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                    return response;
+
                 }
-                var agency = new Agency
+                else if(registerRequest.AccountType =="Agent")
                 {
-                    Name = registerRequest.Name,
-                    OwnerId = user.Id,
-                    CreatedDate = DateTime.Now,
-                    SubscriptionId = null
-                }; 
-                unitOfWork.AgencyRepository.Add(agency);
-                unitOfWork.Save();
-                var response = new AuthResponse(user.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
-               // await UserManager.AddToRoleAsync(user, /*DefaultRoles.AgencyRoleName*/"Agency");
+                    IEnumerable<string> Roles = new List<string> { "Agent" };
+                    var (Token, ExpireDate) = tokenGenerator.GenerateToken(user, Roles);
+                    var refresh_token = GenerateRefreshToken();
+                    var refresh_token_expiry = DateTime.Now.AddDays(ExpireDays);
+                    user.RefreshTokens.Add(new RefreshToken
+                    {
+                        Token = refresh_token,
+                        ExpireOn = refresh_token_expiry
+                    });
 
 
-                return response;
+                    await UserManager.UpdateAsync(user);
+                    var role = await _roleManager.FindByNameAsync(DefaultRoles.AgentRoleName);
+                    if (role != null)
+                    {
+                        await UserManager.AddToRoleAsync(user, role.Name);
+                    }
+                    var agent = new Agent
+                    {
+                        User = user,
+                       
+                        CreatedDate = DateTime.Now,
+                        SubscriptionId = null
+                    };
+                    unitOfWork.AgentRepository.Add(agent);
+                    unitOfWork.Save();
+                   var  response = new AuthResponse(user.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                    return response;
+
+                }
+
+                // await UserManager.AddToRoleAsync(user, /*DefaultRoles.AgencyRoleName*/"Agency");
+
+
             }
             // var error= result.Errors.FirstOrDefault();
             return null; 

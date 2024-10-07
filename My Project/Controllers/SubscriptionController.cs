@@ -30,14 +30,14 @@ namespace My_Project.Controllers
                 return BadRequest(ModelState);
             }
 
-            var activeSubscription = _unitOfWork.SubscriptionRepository
-                .Find(s => s.IsActive && s.StartDate.AddMonths(s.DurationMonths) > DateTime.Now)
-                .FirstOrDefault();
+            //var activeSubscription = _unitOfWork.SubscriptionRepository
+            //    .Find(s => s.IsActive && s.StartDate.AddMonths(s.DurationMonths) > DateTime.Now)
+            //    .FirstOrDefault();
 
-            if (activeSubscription != null)
-            {
-                return BadRequest(new { message = "You already have an active subscription." });
-            }
+            //if (activeSubscription != null)
+            //{
+            //    return BadRequest(new { message = "You already have an active subscription." });
+            //}
 
             subscription.StartDate = DateTime.Now;
             subscription.IsActive = true;
@@ -45,7 +45,7 @@ namespace My_Project.Controllers
             _unitOfWork.SubscriptionRepository.Add(subscription.Adapt<Subscription>());
             _unitOfWork.Save();
 
-            return CreatedAtAction(nameof(GetSubscriptionById), new { id = subscription.Id }, subscription);
+            return CreatedAtAction(nameof(GetSubscriptionById), new { id = subscription.SubId }, subscription);
         }
 
         //[Authorize(Roles = "Admin")]
@@ -82,7 +82,7 @@ namespace My_Project.Controllers
             {
                 return NotFound();
             }
-            subscription.Id = existingsubscription.Id;
+            subscription.SubId = existingsubscription.Id;
             _unitOfWork.SubscriptionRepository.Update(subscription.Adapt(existingsubscription));
             _unitOfWork.Save();
 
@@ -108,11 +108,11 @@ namespace My_Project.Controllers
 
         public IActionResult GetAllSubscriptions()
         {
-            var subscriptions = _unitOfWork.SubscriptionRepository.GetAll( );
+            var subscriptions = _unitOfWork.SubscriptionRepository.GetAllWithInclude( );
 
-            var subscriptionsDto = subscriptions.Adapt<List<SubscriptionResponseDTO>>();
+       
 
-            return Ok(subscriptionsDto);
+            return Ok(subscriptions);
         }
        
 

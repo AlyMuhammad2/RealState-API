@@ -14,9 +14,9 @@
         public DateTime CreatedDate { get; set; }
 
         public bool IsAvailable { get; set; }
-        public IFormFile PrimaryImg { get; set; }
+        public string PrimaryImg { get; set; }
 
-        public List<IFormFile> images { get; set; }
+        public List<string> images { get; set; }
         public int NumberOfFloors { get; set; }
 
         public bool HasSwimmingPool { get; set; }
