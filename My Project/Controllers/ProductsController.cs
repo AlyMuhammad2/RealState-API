@@ -102,6 +102,20 @@ namespace My_Project.Controllers
             var productCardDtos = paginatedProducts.Items.Select(p => p.Adapt<ProductCardDTO>()).ToList();
             return Ok(productCardDtos);
         }
+        //[HttpGet]
+
+        //public IActionResult GetProductForRent()
+        //{
+        //    var products = _unitOfWork.ProductRepository.Find(p => p.IsForRent == true);
+
+        //    return Ok(products);
+        //}
+        //[HttpGet]
+        //public IActionResult GetProductsForSale()
+        //{
+        //    var products=_unitOfWork.ProductRepository.Find(p=>p.IsForRent== true);
+        //    return Ok(products);
+        //}
 
     }
 }

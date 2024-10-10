@@ -27,6 +27,13 @@ namespace DAL.Models
 
         public bool IsAvailable { get; set; }
 
+        public bool? IsForRent { get; set; }
+        //public bool? IsForSale { get; set; }
+        public double? Area { get; set; }
+        public int? NumOfBedroom {  get; set; }
+        public int? NumOfBathrom { get; set; }
+        public int? NumOfCars { get; set; }
+        
         [ForeignKey("Agent")]
         public int? AgentId { get; set; } // Foreign Key to Agent
         public Agent? Agent { get; set; }
@@ -39,7 +46,5 @@ namespace DAL.Models
 
         public string? PrimaryImg { get; set; }
         public List<string>? images { get; set; }
-
-
     }
 }

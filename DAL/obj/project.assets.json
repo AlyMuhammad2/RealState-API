@@ -4038,19 +4038,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\": {}
+    "C:\\Users\\Windows\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\DAL\\obj\\",
+      "projectPath": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\DAL\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Mohamed Tarek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4132,7 +4137,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -15,6 +15,17 @@
         public int FloorNumber { get; set; } // رقم الطابق
         public bool HasElevatorAccess { get; set; } // هل يوجد مصعد؟
 
+        public bool? IsForRent { get; set; }
+
+        public int? NumOfBedroom { get; set; }
+
+        public int? NumOfBathrom { get; set; }
+
+        public int? NumOfCars
+        {
+            get; set;
+        }
+
         // Agency details
         public string AgencyName { get; set; }
         public string AgencyEmail { get; set; }

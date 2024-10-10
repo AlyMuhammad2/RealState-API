@@ -1215,3 +1215,9 @@ C:\Users\Mohamed Tarek\Desktop\FLast\My Project\obj\Debug\net8.0\refint\My Proje
 C:\Users\Mohamed Tarek\Desktop\FLast\My Project\obj\Debug\net8.0\My Project.pdb
 C:\Users\Mohamed Tarek\Desktop\FLast\My Project\obj\Debug\net8.0\My Project.genruntimeconfig.cache
 C:\Users\Mohamed Tarek\Desktop\FLast\My Project\obj\Debug\net8.0\ref\My Project.dll
+C:\Users\Windows\source\Repos\AlyMuhammad2\API-Repo\My Project\bin\Debug\net8.0\Hangfire.AspNetCore.dll
+C:\Users\Windows\source\Repos\AlyMuhammad2\API-Repo\My Project\bin\Debug\net8.0\Hangfire.Core.dll
+C:\Users\Windows\source\Repos\AlyMuhammad2\API-Repo\My Project\bin\Debug\net8.0\Hangfire.NetCore.dll
+C:\Users\Windows\source\Repos\AlyMuhammad2\API-Repo\My Project\bin\Debug\net8.0\Hangfire.SqlServer.dll
+C:\Users\Windows\source\Repos\AlyMuhammad2\API-Repo\My Project\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Windows\source\Repos\AlyMuhammad2\API-Repo\My Project\bin\Debug\net8.0\Stripe.net.dll

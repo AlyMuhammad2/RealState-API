@@ -9,6 +9,17 @@
         public decimal Price { get; set; }
         public string Location { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public bool? IsForRent { get; set; }
+
+        public int? NumOfBedroom { get; set; }
+
+        public int? NumOfBathrom { get; set; }
+
+        public int? NumOfCars
+        {
+            get; set;
+        }
         public bool IsAvailable { get; set; }
         public int NumberOfRooms { get; set; }
         public bool HasGarage { get; set; }

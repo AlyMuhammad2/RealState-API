@@ -47,7 +47,8 @@ namespace My_Project
             builder.Services.AddAuthConfig();
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("mypolicy", policy => policy.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());}); 
+                options.AddPolicy("mypolicy", policy => policy.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
+            }); 
             var app = builder.Build();
             app.UseCors("mypolicy");
             app.UseRouting();

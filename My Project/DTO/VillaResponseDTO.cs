@@ -12,8 +12,18 @@
         public string PrimaryImg { get; set; }
 
         public List<string> images { get; set; }
-        public int NumberOfFloors { get; set; } 
+        public int NumberOfFloors { get; set; }
 
+        public bool? IsForRent { get; set; }
+
+        public int? NumOfBedroom { get; set; }
+
+        public int? NumOfBathrom { get; set; }
+
+        public int? NumOfCars
+        {
+            get; set;
+        }
         public bool HasSwimmingPool { get; set; } 
 
         public bool HasGarden { get; set; }

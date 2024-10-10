@@ -55,8 +55,9 @@ namespace My_Project.Controllers
             return Ok(HouseDto);
         }
 
+        
         [HttpPost]
-    //    [Authorize(Roles = "Agent,Agency")]
+        //[Authorize(Roles = "Agent,Agency")]
 
         public IActionResult Add([FromBody]HouseRequestDTO houseDTO)
         {

@@ -78,7 +78,8 @@ namespace My_Project.Controllers
             {
                 return BadRequest("Invalid agent");
             }
-            var Agency = _unitOfWork.AgencyRepository.Get(agencyId);
+            var Agency = _unitOfWork.AgencyRepository.Find(a=>a.OwnerId==agencyId).FirstOrDefault();
+
             //var subscription = _unitOfWork.SubscriptionRepository.Get((int)Agency.SubscriptionId);
             //if (Agency.NumOfAvailableAgents >= subscription.NumOfAgents)
             //{
@@ -102,6 +103,7 @@ namespace My_Project.Controllers
             var result = await userManager.CreateAsync(NewUser, NewAgent.Password);
             if (!result.Succeeded)
             {
+                userManager.DeleteAsync(NewUser);
                 return BadRequest(result.Errors);
             }
             var role = await roleManager.FindByNameAsync(DefaultRoles.AgentRoleName);
@@ -111,7 +113,7 @@ namespace My_Project.Controllers
             }
             var Agent = new Agent
             {
-                AgencyId = agencyId,
+                AgencyId = Agency.Id,
                 UserId = NewUser.Id,
                 CreatedDate = DateTime.Now
             };
@@ -120,7 +122,7 @@ namespace My_Project.Controllers
             _unitOfWork.AgentRepository.Add(Agent);
             _unitOfWork.Save();
 
-            return Ok("Agent is added.");
+            return Ok();
         }
        
         [HttpDelete("{agentId}")]

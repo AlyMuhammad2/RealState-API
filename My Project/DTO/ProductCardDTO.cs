@@ -6,6 +6,18 @@
 
         public decimal Price { get; set; }
 
+        public double Area {  get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public bool? IsForRent { get; set; }
+
+        public int? NumOfBedroom { get; set; }
+
+        public int? NumOfBathrom { get; set; }
+
+        public int? NumOfCars { get; set; }
+
         public string Location { get; set; }
 
         public bool IsAvailable { get; set; }

@@ -22,7 +22,7 @@ namespace BLL.Services
         private readonly UserManager<User> UserManager;
         private readonly ITokenGenerator tokenGenerator;
         private readonly SignInManager<User> signInManager;
-        private readonly int ExpireDays = 20;
+        private readonly int ExpireDays = 30;
         private readonly RoleManager<Role> _roleManager;
         private readonly IUnitOfWork unitOfWork; 
         public Authentication( UserManager<User> _userManager , ITokenGenerator _tokenGenerator , 
