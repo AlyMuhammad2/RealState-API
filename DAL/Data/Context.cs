@@ -37,6 +37,14 @@ namespace DAL.Data
                        .HasValue<Apartment>("Apartment")
                        .HasValue<House>("House")
                        .HasValue<Villa>("Villa");
+            modelBuilder.Entity<Product>()
+    .HasOne(e => e.Agency)
+    .WithMany(e => e.Products)
+    .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Agent>()
+ .HasOne(e => e.Agency)
+ .WithMany(e => e.Agents)
+ .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

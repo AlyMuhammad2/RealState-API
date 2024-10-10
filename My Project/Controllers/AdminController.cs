@@ -50,9 +50,16 @@ namespace My_Project.Controllers
             {
                 return NotFound();
             }
+            var totalItems = AgenciesQuery.Count(); // Get total items count
+
             var paginatedAgencies = PaginatedList<Agency>.Create(AgenciesQuery, filters.pageNumber, filters.pageSize);
             var AgenciesDto = paginatedAgencies.Items.Select(p => p.Adapt<AgencyResponseDTO>()).ToList();
-            return Ok(AgenciesDto);
+
+            return Ok(new
+            {
+                TotalItems = totalItems, // Return total items count
+                Items = AgenciesDto // Return paginated items
+            });
         }
       
         [HttpPut("{id}")]

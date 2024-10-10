@@ -4,6 +4,7 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241008174953_aa")]
+    partial class aa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -541,7 +544,7 @@ namespace DAL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEpLqoR24piqcIvMGrHe2sGeygFLDnpiMmtaN7w7BfhP1mF4XT6X9XqhuWVH+KufPQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGy7vVbVN6h4AUJ7IXr4XKUgeprbLjLurbQ7o+32g9HTOhWb4Oy9lF0zzcXEPWj8tQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "87BF92C9EF0249CDA210D85D1A851AH1",
                             TwoFactorEnabled = false,
@@ -615,8 +618,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Models.Agency", "Agency")
                         .WithMany("Agents")
-                        .HasForeignKey("AgencyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AgencyId");
 
                     b.HasOne("DAL.Models.Subscription", "Subscription")
                         .WithMany("Agents")
@@ -650,8 +652,7 @@ namespace DAL.Migrations
                 {
                     b.HasOne("DAL.Models.Agency", "Agency")
                         .WithMany("Products")
-                        .HasForeignKey("AgencyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AgencyId");
 
                     b.HasOne("DAL.Models.Agent", "Agent")
                         .WithMany("Products")
