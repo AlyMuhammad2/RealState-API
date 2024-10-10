@@ -60,7 +60,7 @@ namespace My_Project.Controllers
                                        x.Location.Contains(filters.SearchValue)),
                query => query.Include(p => p.Agency),
                query => query.Include(p => p.Agent).ThenInclude(ag => ag.User),
-               query => query.Where(p => p.AgentId == AgentId)
+               query => query.Where(p => p.Agent.UserId == AgentId)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))
@@ -87,7 +87,7 @@ namespace My_Project.Controllers
                                        x.Agent.User.UserName.Contains(filters.SearchValue)),
                query => query.Include(p => p.Agency),
                query => query.Include(p => p.Agent).ThenInclude(ag => ag.User),
-               query => query.Where(p => p.AgencyId == AgencyId)
+               query => query.Where(p => p.Agency.OwnerId == AgencyId)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))

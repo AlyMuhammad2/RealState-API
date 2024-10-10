@@ -184,7 +184,8 @@ namespace My_Project.Controllers
                query => query.Include(p => p.User),
                  query => query.Include(p => p.Agency),
                    query => query.Include(p => p.Products),
-                     query => query.Include(p => p.Tasks)
+                     query => query.Include(p => p.Tasks),
+                       query => query.Where(p => p.Agency.OwnerId==agencyid)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))

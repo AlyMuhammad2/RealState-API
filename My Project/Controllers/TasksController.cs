@@ -44,7 +44,6 @@ namespace My_Project.Controllers
             return Ok(TaskDto);
         }
         // [Authorize(Roles = "Agency")]
-
         [HttpPost]
        [Route("agency/{AgencyId}/addTasks")]
 
@@ -54,7 +53,8 @@ namespace My_Project.Controllers
             {
                 return BadRequest();
             }
-            TaskDTO.AgencyId = AgencyId;
+            var agen=_unitOfWork.AgencyRepository.Find(e=>e.OwnerId==AgencyId).FirstOrDefault();
+            TaskDTO.AgencyId = agen.Id;
             var Task = _unitOfWork.TasksRepository.Add(TaskDTO.Adapt<tasks>());
             _unitOfWork.Save();
             return CreatedAtAction(nameof(Get), new { id = Task.Id }, Task);
@@ -64,7 +64,6 @@ namespace My_Project.Controllers
 
         [HttpPut]
         [Route("task/update/{id}")]
-
         public IActionResult Update(int id, [FromBody] TaskRequestDTO Task)
         {
             if (Task == null)
@@ -112,7 +111,7 @@ namespace My_Project.Controllers
                                        x.Status.Contains(filters.SearchValue)),
                 query => query.Include(p => p.Agency),
                query => query.Include(p => p.Agent).ThenInclude(ag => ag.User),
-               query => query.Where(p => p.AgentId == AgentId)
+               query => query.Where(p => p.Agent.UserId == AgentId)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))
@@ -140,7 +139,7 @@ namespace My_Project.Controllers
                                        ),
                 query => query.Include(p => p.Agency),
                query => query.Include(p => p.Agent).ThenInclude(ag => ag.User),
-               query => query.Where(p => p.AgencyId == AgencyId)
+               query => query.Where(p => p.Agency.OwnerId == AgencyId)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))
