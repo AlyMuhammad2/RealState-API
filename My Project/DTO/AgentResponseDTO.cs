@@ -10,6 +10,7 @@
         public DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
         public string AgencyName { get; set; }
+        public int Agencyid { get; set; }
         public int TasksNumber { get; set; }
         public int ProductsNumber { get; set; }
         public List<ProductCardDTO>? Products { get; set; }

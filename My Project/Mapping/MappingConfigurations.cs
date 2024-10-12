@@ -68,6 +68,7 @@ namespace My_Project.Mapping
                  .Map(dest => dest.Email, src => src.User.Email)
                  .Map(dest => dest.PhoneNumber, src => src.User.PhoneNumber)
                  .Map(dest => dest.AgencyName, src => src.Agency.Name)
+                 .Map(dest => dest.AgencyId, src => src.Agency.Id)
                  .Map(dest => dest.IsActive, src => src.IsActive);
             config.NewConfig<Agent, AgentResponseDTO>()
                  .Map(dest => dest.id, src => src.Id)
@@ -75,6 +76,7 @@ namespace My_Project.Mapping
                  .Map(dest => dest.Email, src => src.User.Email)
                  .Map(dest => dest.PhoneNumber, src => src.User.PhoneNumber)
                  .Map(dest => dest.AgencyName, src => src.Agency.Name)
+                 .Map(dest => dest.Agencyid, src => src.Agency.Id)
                  .Map(dest => dest.CreatedDate, src => src.CreatedDate)
                  .Map(dest => dest.IsActive, src => src.IsActive)
                  .Map(dest => dest.ProductsNumber, src => src.Products.Count)

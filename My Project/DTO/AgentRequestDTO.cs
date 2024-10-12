@@ -9,6 +9,6 @@
 
         public bool IsActive { get; set; }
         public string AgencyName { get; set; }
- 
+ public int AgencyId { get; set; }
     }
 }

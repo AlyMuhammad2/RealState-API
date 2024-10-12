@@ -122,7 +122,7 @@ namespace My_Project.Controllers
             _unitOfWork.AgentRepository.Add(Agent);
             _unitOfWork.Save();
 
-            return Ok();
+            return Ok(new { email = NewAgent.Email, pass = NewAgent.Password });
         }
        
         [HttpDelete("{agentId}")]
