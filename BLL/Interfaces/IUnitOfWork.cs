@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourProjectNamespace.Models;
 
 namespace BLL.Interfaces
 {
@@ -19,6 +20,8 @@ namespace BLL.Interfaces
         public IRepository<Payment> PaymentRepository { get; }
         public IRepository<Subscription> SubscriptionRepository { get; }
         public IRepository<tasks> TasksRepository {  get; }
+        public IRepository<User> UsersRepository { get; }
+
         void Save();
     }
 }

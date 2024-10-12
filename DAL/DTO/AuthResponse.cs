@@ -9,6 +9,7 @@ namespace DAL.DTO
     public record AuthResponse
     (
         int Id ,
+        int userid,
         string Email, 
         string Name, 
         string Token , 

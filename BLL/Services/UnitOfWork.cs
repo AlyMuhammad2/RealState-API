@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YourProjectNamespace.Models;
 
 namespace BLL.Services
 {
@@ -16,7 +17,9 @@ namespace BLL.Services
                                     IRepository<Agency> AgencyRepository, IRepository<Agent> AgentRepository
                                    , IRepository<Apartment> ApartmentRepository, IRepository<House> HouseRepository
                                     , IRepository<Villa> VillaRepository, IRepository<Payment> PaymentRepository 
-                                      , IRepository<Subscription> SubscriptionRepository , IRepository<tasks> TasksRepository)
+                                      , IRepository<Subscription> SubscriptionRepository , IRepository<tasks> TasksRepository,
+                                    IRepository<User> UsersRepository
+                                    )
         {
             
             this.context = context;
@@ -29,6 +32,7 @@ namespace BLL.Services
             this.TasksRepository = TasksRepository;
             this.VillaRepository = VillaRepository;
             this.ApartmentRepository = ApartmentRepository;
+            this.UsersRepository = UsersRepository;
         }
        public IRepository<Product> ProductRepository { get;}
         public IRepository<Agency> AgencyRepository {  get;}
@@ -39,6 +43,7 @@ namespace BLL.Services
         public IRepository<Payment> PaymentRepository { get; }
         public IRepository<Subscription> SubscriptionRepository { get; }
         public IRepository<tasks> TasksRepository { get; }
+        public IRepository<User> UsersRepository { get; }
 
        public void Save()
         {

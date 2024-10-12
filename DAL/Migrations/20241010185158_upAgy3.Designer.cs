@@ -4,6 +4,7 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241010185158_upAgy3")]
+    partial class upAgy3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -557,7 +560,7 @@ namespace DAL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI81NVv68uNXjXQNgYHUFpPQ4Zj21IGLFDnXkP9cfYT1JMPxTQUeuQy5T2zamTXWXg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMU75kyW0Hm//ibGBo/yl5dpmkn5mgNyR96XUTe9vSZqWAK3XQViM39CmEIFNsSN7w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "87BF92C9EF0249CDA210D85D1A851AH1",
                             TwoFactorEnabled = false,

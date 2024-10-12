@@ -4,6 +4,7 @@ using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241010183938_upAgy")]
+    partial class upAgy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,8 +55,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId")
-                        .IsUnique();
+                    b.HasIndex("OwnerId");
 
                     b.HasIndex("SubscriptionId");
 
@@ -557,7 +559,7 @@ namespace DAL.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI81NVv68uNXjXQNgYHUFpPQ4Zj21IGLFDnXkP9cfYT1JMPxTQUeuQy5T2zamTXWXg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED+KsFDV5uubDq1HxfxcjUmGNaG430kTbTnXXiEVUE8EodNrNvLGk3ACAARIox22rA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "87BF92C9EF0249CDA210D85D1A851AH1",
                             TwoFactorEnabled = false,
@@ -613,8 +615,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Models.Agency", b =>
                 {
                     b.HasOne("YourProjectNamespace.Models.User", "Owner")
-                        .WithOne("OwnedAgency")
-                        .HasForeignKey("DAL.Models.Agency", "OwnerId")
+                        .WithMany("OwnedAgencies")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -830,8 +832,7 @@ namespace DAL.Migrations
                     b.Navigation("AgentProfile")
                         .IsRequired();
 
-                    b.Navigation("OwnedAgency")
-                        .IsRequired();
+                    b.Navigation("OwnedAgencies");
 
                     b.Navigation("UserRoles");
                 });

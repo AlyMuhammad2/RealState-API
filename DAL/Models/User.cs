@@ -18,7 +18,7 @@ namespace YourProjectNamespace.Models
 
         // One-to-Many relationship with Agency
         [InverseProperty("Owner")]
-        public ICollection<Agency> OwnedAgencies { get; set; }
+        public Agency OwnedAgency { get; set; }
 
         // One-to-One relationship with Agent
         [InverseProperty("User")]

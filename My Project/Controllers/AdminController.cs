@@ -82,18 +82,45 @@ namespace My_Project.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteAgency(int id)
+        public async Task<IActionResult>  DeleteAgency(int id)
         {
-            var agent = _unitOfWork.AgencyRepository.Get(id);
-            if (agent == null)
+           
+            var agency = _unitOfWork.AgencyRepository.Get(id);
+            if (agency == null)
             {
-                return NotFound();
+                return NotFound("Agency not found.");
             }
 
-            _unitOfWork.AgencyRepository.Delete(agent.Id);
-            _unitOfWork.Save();
+            var user = await userManager.FindByIdAsync(agency.OwnerId.ToString());
+            if (user != null)
+            {
+                // 1- Remove the user from all roles
+                var roles = await userManager.GetRolesAsync(user);
+                if (roles != null)
+                {
+                    foreach (var role in roles)
+                    {
+                        await userManager.RemoveFromRoleAsync(user, role);
+                    }
+                }
 
-            return NoContent();
+                // 2- Delete the user
+                var result = await userManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    return BadRequest("Failed to delete the user associated with the agent.");
+                }
+            }
+            try
+            {
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict("The agent has already been deleted or updated by another process.");
+            }
+
+            return Ok("Agency deleted successfully.");
         }
         [HttpPost("add-agency")]
         //[Authorize(Roles = "Admin")]

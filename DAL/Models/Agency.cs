@@ -30,7 +30,7 @@ namespace DAL.Models
         public bool IsActive { get; set; }
 
         // Navigation Properties
-        [InverseProperty("OwnedAgencies")]
+        [InverseProperty("OwnedAgency")]
         public User Owner { get; set; }
 
         public Subscription? Subscription { get; set; }

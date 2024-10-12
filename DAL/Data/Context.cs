@@ -26,6 +26,8 @@ namespace DAL.Data
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<Payment> Payments { get; set; }
        public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -45,6 +47,14 @@ namespace DAL.Data
  .HasOne(e => e.Agency)
  .WithMany(e => e.Agents)
  .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<User>()
+         .HasOne(a => a.OwnedAgency)
+         .WithOne(u => u.Owner)  // One-to-One relationship
+         .HasForeignKey<Agency>(a => a.OwnerId) // Foreign Key
+         .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+
         }
     }
 }

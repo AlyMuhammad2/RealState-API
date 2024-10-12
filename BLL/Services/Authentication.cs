@@ -37,6 +37,7 @@ namespace BLL.Services
         public async Task<AuthResponse?> LoginAuth(string email, string password, CancellationToken cancellationToken = default)
         {
             var user =  await UserManager.FindByEmailAsync(email);
+            
             if (user == null) 
             {
                 return null; 
@@ -56,7 +57,20 @@ namespace BLL.Services
                     ExpireOn = refresh_token_expiry
                 });
                 await UserManager.UpdateAsync(user);
-                var response = new AuthResponse(user.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                var userid = 0;
+
+                if (UserRoles.Contains("Agency"))
+                {
+                    var agency=unitOfWork.AgencyRepository.Find(a=>a.OwnerId == user.Id).FirstOrDefault();
+                    userid = agency.Id;
+
+                }
+                if (UserRoles.Contains("Agent"))
+                {
+                    var agent = unitOfWork.AgentRepository.Find(a => a.UserId == user.Id).FirstOrDefault();
+                    userid = agent.Id;
+                }
+                var response = new AuthResponse(user.Id,userid, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
 
                 return response;
             }
@@ -103,7 +117,7 @@ namespace BLL.Services
 
             await UserManager.UpdateAsync(user);
 
-            var response = new AuthResponse(user.Id, user.Email, user.UserName, newToken, expiresIn, newRefreshToken, refreshTokenExpiration);
+            var response = new AuthResponse(user.Id,0, user.Email, user.UserName, newToken, expiresIn, newRefreshToken, refreshTokenExpiration);
             return response; 
         }
         public async Task<AuthResponse?> Register(RegisterReq registerRequest, CancellationToken cancellationToken = default)
@@ -155,7 +169,7 @@ namespace BLL.Services
                     };
                     unitOfWork.AgencyRepository.Add(agency);
                     unitOfWork.Save();
-                    var response = new AuthResponse(user.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                    var response = new AuthResponse(user.Id,agency.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
                     return response;
 
                 }
@@ -187,7 +201,7 @@ namespace BLL.Services
                     };
                     unitOfWork.AgentRepository.Add(agent);
                     unitOfWork.Save();
-                   var  response = new AuthResponse(user.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                   var  response = new AuthResponse(user.Id,agent.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
                     return response;
 
                 }

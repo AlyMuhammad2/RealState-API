@@ -5692,24 +5692,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Windows\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\My Project\\My Project.csproj",
+      "projectUniqueName": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\My Project\\My Project.csproj",
       "projectName": "My Project",
-      "projectPath": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\My Project\\My Project.csproj",
-      "packagesPath": "C:\\Users\\Windows\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\My Project\\obj\\",
+      "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\My Project\\My Project.csproj",
+      "packagesPath": "C:\\Users\\Mohamed Tarek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\My Project\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Windows\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Mohamed Tarek\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5724,11 +5719,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\BLL\\BLL.csproj"
+            "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\BLL\\BLL.csproj"
             },
-            "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\Windows\\source\\Repos\\AlyMuhammad2\\API-Repo\\DAL\\DAL.csproj"
+            "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Mohamed Tarek\\Desktop\\FLast\\DAL\\DAL.csproj"
             }
           }
         }
@@ -5818,7 +5813,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
