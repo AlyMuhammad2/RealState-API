@@ -117,7 +117,7 @@ namespace My_Project.Controllers
                 UserId = NewUser.Id,
                 CreatedDate = DateTime.Now
             };
-            Agency.NumOfAvailableAgents++;
+            Agency.NumOfAvailableAgents--;
             _unitOfWork.AgencyRepository.Update(Agency);
             _unitOfWork.AgentRepository.Add(Agent);
             _unitOfWork.Save();
@@ -128,16 +128,26 @@ namespace My_Project.Controllers
         [HttpDelete("{agentId}")]
         public async Task<IActionResult> DeleteAgent(int agentId)
         {
-            var agent = _unitOfWork.AgentRepository.Get(agentId);
+            var agent = _unitOfWork.AgentRepository.GetWithInclude(agentId,a=>a.Id==agentId,
+                query=> query.Include(a=>a.Products)
+                );
             if (agent == null)
             {
                 return NotFound("Agent not found.");
+
             }
 
-            var agency = _unitOfWork.AgencyRepository.Get((int)agent.AgencyId);
-            if (agency == null)
+           
+            if (agent.AgencyId!=null)
             {
-                return NotFound("Agency not found.");
+                var agency = _unitOfWork.AgencyRepository.Get((int)agent.AgencyId);
+                agency.NumOfAvailableAgents++;
+                foreach (var product in agent.Products)
+                {
+                    product.AgentId = null; 
+                }
+
+
             }
 
             var user = await userManager.FindByIdAsync(agent.UserId.ToString());
@@ -160,7 +170,6 @@ namespace My_Project.Controllers
                     return BadRequest("Failed to delete the user associated with the agent.");
                 }
             }
-            agency.NumOfAvailableAgents++;
 
             try
             {
@@ -171,7 +180,7 @@ namespace My_Project.Controllers
                 return Conflict("The agent has already been deleted or updated by another process.");
             }
 
-            return Ok("Agent deleted successfully.");
+            return Ok();
         }
         [HttpGet]
         [Route("{agencyid}/agents")]

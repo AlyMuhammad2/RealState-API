@@ -10,6 +10,7 @@ namespace My_Project.Mapping
         public void Register(TypeAdapterConfig config)
         {
             config.NewConfig<Product, ProductCardDTO>()
+               .Map(dest => dest.id, src => src.Id)
                .Map(dest => dest.Title, src => src.Title)
                .Map(dest => dest.Price, src => src.Price)
                .Map(dest => dest.Location, src => src.Location)
@@ -77,6 +78,8 @@ namespace My_Project.Mapping
                  .Map(dest => dest.PhoneNumber, src => src.User.PhoneNumber)
                  .Map(dest => dest.AgencyName, src => src.Agency.Name)
                  .Map(dest => dest.Agencyid, src => src.Agency.Id)
+                 .Map(dest => dest.SubscriptionId, src => src.SubscriptionId)
+                 .Map(dest => dest.SubscriptionType, src => src.Subscription.SubscriptionType)
                  .Map(dest => dest.CreatedDate, src => src.CreatedDate)
                  .Map(dest => dest.IsActive, src => src.IsActive)
                  .Map(dest => dest.ProductsNumber, src => src.Products.Count)

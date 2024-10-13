@@ -60,7 +60,7 @@ namespace My_Project.Controllers
                                        x.Location.Contains(filters.SearchValue)),
                query => query.Include(p => p.Agency),
                query => query.Include(p => p.Agent).ThenInclude(ag => ag.User),
-               query => query.Where(p => p.Agent.UserId == AgentId)
+               query => query.Where(p => p.AgentId == AgentId)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))
@@ -87,7 +87,7 @@ namespace My_Project.Controllers
                                        x.Agent.User.UserName.Contains(filters.SearchValue)),
                query => query.Include(p => p.Agency),
                query => query.Include(p => p.Agent).ThenInclude(ag => ag.User),
-               query => query.Where(p => p.Agency.OwnerId == AgencyId)
+               query => query.Where(p => p.AgencyId == AgencyId)
                ).AsQueryable();
 
             if (!string.IsNullOrEmpty(filters.SortColumn))
@@ -102,20 +102,24 @@ namespace My_Project.Controllers
             var productCardDtos = paginatedProducts.Items.Select(p => p.Adapt<ProductCardDTO>()).ToList();
             return Ok(productCardDtos);
         }
-        //[HttpGet]
+        [HttpGet]
+        [Route("product/{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var productsQuery = _unitOfWork.ProductRepository.GetWithInclude(id, e => e.Id == id,
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+            if (productsQuery == null)
+            {
+                return NotFound();
+            }
 
-        //public IActionResult GetProductForRent()
-        //{
-        //    var products = _unitOfWork.ProductRepository.Find(p => p.IsForRent == true);
+            var ProductDto = (productsQuery).Adapt<ProductCardDTO>();
 
-        //    return Ok(products);
-        //}
-        //[HttpGet]
-        //public IActionResult GetProductsForSale()
-        //{
-        //    var products=_unitOfWork.ProductRepository.Find(p=>p.IsForRent== true);
-        //    return Ok(products);
-        //}
+
+            return Ok(ProductDto);
+        }
 
     }
 }

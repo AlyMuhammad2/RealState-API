@@ -32,6 +32,7 @@ namespace My_Project.Controllers
                  query => query.Include(p => p.User),
                  query => query.Include(p => p.Agency),
                  query => query.Include(p => p.Products),
+                 query => query.Include(p => p.Subscription),
                  query => query.Include(p => p.Tasks)
                 );
             if (agent == null)

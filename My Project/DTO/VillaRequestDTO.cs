@@ -34,8 +34,8 @@
         public bool HasGarden { get; set; }
 
 
-        public int AgencyId { get; set; }
+        public int ?AgencyId { get; set; }
 
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
     }
 }

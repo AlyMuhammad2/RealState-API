@@ -12,6 +12,7 @@ using YourProjectNamespace.Models;
 using DAL.Models;
 using Microsoft.AspNetCore.Identity.Data;
 using DAL.Default;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 
 
@@ -138,9 +139,12 @@ namespace BLL.Services
                
             };
             var result = await UserManager.CreateAsync(user, registerRequest.Password);
-              
+
             if (result.Succeeded)
             {
+
+          //      var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+
                 if (registerRequest.AccountType == "Agency")
                 {
                     IEnumerable<string> Roles = new List<string> { "Agency" };
@@ -169,11 +173,11 @@ namespace BLL.Services
                     };
                     unitOfWork.AgencyRepository.Add(agency);
                     unitOfWork.Save();
-                    var response = new AuthResponse(user.Id,agency.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                    var response = new AuthResponse(user.Id, agency.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
                     return response;
 
                 }
-                else if(registerRequest.AccountType =="Agent")
+                else if (registerRequest.AccountType == "Agent")
                 {
                     IEnumerable<string> Roles = new List<string> { "Agent" };
                     var (Token, ExpireDate) = tokenGenerator.GenerateToken(user, Roles);
@@ -195,23 +199,26 @@ namespace BLL.Services
                     var agent = new Agent
                     {
                         User = user,
-                       
+
                         CreatedDate = DateTime.Now,
                         SubscriptionId = null
                     };
                     unitOfWork.AgentRepository.Add(agent);
                     unitOfWork.Save();
-                   var  response = new AuthResponse(user.Id,agent.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
+                    var response = new AuthResponse(user.Id, agent.Id, user.Email, user.UserName, Token, ExpireDate, refresh_token, refresh_token_expiry);
                     return response;
 
                 }
 
                 // await UserManager.AddToRoleAsync(user, /*DefaultRoles.AgencyRoleName*/"Agency");
-
+                return null;
 
             }
-            // var error= result.Errors.FirstOrDefault();
-            return null; 
+            else
+            {
+                UserManager.DeleteAsync(user);
+                return null;
+            }
         }
 
     }

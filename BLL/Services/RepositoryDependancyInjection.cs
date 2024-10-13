@@ -51,7 +51,7 @@ namespace BLL.Services
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireDigit = true;
                     options.Password.RequiredLength = 8;
-                   // options.SignIn.RequireConfirmedAccount = true;
+                  //  options.SignIn.RequireConfirmedAccount = true;
                     options.User.RequireUniqueEmail = true;
                 });
 

@@ -34,8 +34,8 @@
         public string AgencyPhoneNumber { get; set; }
 
         // Agent details
-        public string AgentName { get; set; }
-        public string AgentPhoneNumber { get; set; }
-        public string AgentEmail { get; set; }
+        public string ?AgentName { get; set; }
+        public string ?AgentPhoneNumber { get; set; }
+        public string ?AgentEmail { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace My_Project.Controllers
             userManager = _userManager;
             roleManager = _roleManager;
         }
-        
+
         [HttpGet("/Admin/Agency")]
         // [Authorize(Roles = "Admin")]
         public IActionResult GetAgencies([FromQuery] RequestFilters filters)
@@ -35,7 +35,7 @@ namespace My_Project.Controllers
             var AgenciesQuery = _unitOfWork.AgencyRepository.GetAllWithInclude(
                   query => query.Where(x => string.IsNullOrEmpty(filters.SearchValue) ||
                                        x.Name.Contains(filters.SearchValue)),
-               query => query.Include(p => p.Agents).ThenInclude(ag=>ag.User),
+               query => query.Include(p => p.Agents).ThenInclude(ag => ag.User),
                  query => query.Include(p => p.Owner),
                    query => query.Include(p => p.Products),
                      query => query.Include(p => p.Subscription),
@@ -61,7 +61,7 @@ namespace My_Project.Controllers
                 Items = AgenciesDto // Return paginated items
             });
         }
-      
+
         [HttpPut("{id}")]
         public IActionResult UpdateAgency(int id, [FromBody] Agency agency)
         {
@@ -82,9 +82,9 @@ namespace My_Project.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult>  DeleteAgency(int id)
+        public async Task<IActionResult> DeleteAgency(int id)
         {
-           
+
             var agency = _unitOfWork.AgencyRepository.Get(id);
             if (agency == null)
             {
@@ -124,13 +124,13 @@ namespace My_Project.Controllers
         }
         [HttpPost("add-agency")]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateAgency([FromBody] AgencyRegisterReq NewAgency,int? subid)
+        public async Task<IActionResult> CreateAgency([FromBody] AgencyRegisterReq NewAgency, int? subid)
         {
             if (NewAgency == null)
             {
                 return BadRequest("Invalid agent");
             }
-          
+
 
             var exsistingAgency = await userManager.FindByEmailAsync(NewAgency.Email);
             if (exsistingAgency != null)
@@ -140,11 +140,11 @@ namespace My_Project.Controllers
 
             var NewUser = new User
             {
-                
+
                 Email = NewAgency.Email,
                 UserName = NewAgency.Name,
                 PhoneNumber = NewAgency.PhoneNumber,
-                
+
             };
             var result = await userManager.CreateAsync(NewUser, NewAgency.Password);
             if (!result.Succeeded)
@@ -159,9 +159,9 @@ namespace My_Project.Controllers
             var Agency = new Agency
             {
                 Name = NewAgency.AgencyName,
-                NumOfAvailableAgents=0,
+                NumOfAvailableAgents = 0,
                 OwnerId = NewUser.Id,
-               SubscriptionId= subid,
+                SubscriptionId = subid,
                 CreatedDate = DateTime.Now,
             };
             var sub = _unitOfWork.SubscriptionRepository.Get((int)subid);
@@ -169,9 +169,9 @@ namespace My_Project.Controllers
             {
                 sub.Id = (int)subid;
                 sub.NumOfsubs++;
-               _unitOfWork.SubscriptionRepository.Update(sub);
+                _unitOfWork.SubscriptionRepository.Update(sub);
             }
-   
+
             _unitOfWork.AgencyRepository.Add(Agency);
             _unitOfWork.Save();
 
@@ -216,5 +216,58 @@ namespace My_Project.Controllers
 
         //    return NoContent();
         //}
+        [HttpGet]
+        [Route("agents")]
+
+        public IActionResult GetAgents([FromQuery] RequestFilters filters)
+        {
+            var AgentsQuery = _unitOfWork.AgentRepository.GetAllWithInclude(
+                   
+               query => query.Include(p => p.User),
+                 query => query.Include(p => p.Agency),
+                   query => query.Include(p => p.Products),
+                  query => query.Include(p => p.Subscription),
+                     query => query.Include(p => p.Tasks)
+                              ).AsQueryable();
+
+            if (!string.IsNullOrEmpty(filters.SortColumn))
+            {
+                AgentsQuery = AgentsQuery.OrderBy($"{filters.SortColumn} {filters.SortDirection}");
+            }
+            if (filters.SearchValue == "Free")
+            {
+                AgentsQuery = AgentsQuery.Where(x => x.AgencyId == null);
+            }
+            else 
+            {
+                AgentsQuery= _unitOfWork.AgentRepository.GetAllWithInclude(
+                   query => query.Where(x => string.IsNullOrEmpty(filters.SearchValue) ||
+                                                      x.User.UserName.Contains(filters.SearchValue) ||
+                                                      x.Agency.Name.Contains(filters.SearchValue)),
+               query => query.Include(p => p.User),
+                 query => query.Include(p => p.Agency),
+                   query => query.Include(p => p.Products),
+                     query => query.Include(p => p.Tasks)
+                              ).AsQueryable();
+
+
+                                                      
+            }
+
+            var totalItems = AgentsQuery.Count();
+            if (totalItems == 0)
+            {
+                return NotFound("No agents found.");
+            }
+            var paginatedAgents = PaginatedList<Agent>.Create(AgentsQuery, filters.pageNumber, filters.pageSize);
+            var AgentsDto = paginatedAgents.Items.Select(p => p.Adapt<AgentResponseDTO>()).ToList();
+            return Ok(new
+            {
+                TotalItems = totalItems, // Return total items count
+                Items = AgentsDto
+                // Return paginated items);
+            });
+
+            }
     }
 }

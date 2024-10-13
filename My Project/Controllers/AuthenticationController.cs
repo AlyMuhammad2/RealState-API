@@ -1,9 +1,11 @@
 ﻿using BLL.Interfaces;
 using DAL.DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using My_Project.DTO;
+using YourProjectNamespace.Models;
 
 namespace My_Project.Controllers
 {
@@ -12,9 +14,11 @@ namespace My_Project.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthentication Authentication;
-        public AuthenticationController(IAuthentication _Authentication )
+        private readonly UserManager<User> userManager;
+        public AuthenticationController(IAuthentication _Authentication,UserManager<User> _userManager )
         {
             Authentication = _Authentication;
+            userManager = _userManager;
         }
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginRequestt loginRequest , CancellationToken cancellationToken)
@@ -37,5 +41,7 @@ namespace My_Project.Controllers
 
             return authResult is null ?BadRequest("invalid "): Ok (authResult);
         }
+        
     }
 }
+

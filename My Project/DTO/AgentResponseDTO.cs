@@ -9,6 +9,8 @@
       
         public DateTime CreatedDate { get; set; }
         public bool IsActive { get; set; }
+        public int SubscriptionId { get; set; }
+        public string SubscriptionType { get; set; }
         public string AgencyName { get; set; }
         public int Agencyid { get; set; }
         public int TasksNumber { get; set; }
