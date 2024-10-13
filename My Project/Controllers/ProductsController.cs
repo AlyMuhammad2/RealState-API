@@ -114,11 +114,56 @@ namespace My_Project.Controllers
             {
                 return NotFound();
             }
+            if(productsQuery.GetType().Name=="House")
+{
+                var house = _unitOfWork.HouseRepository.GetWithInclude(id, e => e.Id == id,
+                    query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                    query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                   );
+                if (house == null)
+                {
+                    return NotFound();
+                }
 
-            var ProductDto = (productsQuery).Adapt<ProductCardDTO>();
+                var HouseDto = (house).Adapt<HouesResponseDTO>();
 
 
-            return Ok(ProductDto);
+                return Ok(HouseDto);
+            }
+            else if (productsQuery.GetType().Name == "Villa")
+            {
+                var Villa = _unitOfWork.VillaRepository.GetWithInclude(id, e => e.Id == id,
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+                if (Villa == null)
+                {
+                    return NotFound();
+                }
+
+                var VillaDto = (Villa).Adapt<VillaResponseDTO>();
+
+
+                return Ok(VillaDto);
+            }
+            else if (productsQuery.GetType().Name == "Apartment")
+            {
+                var Apartment = _unitOfWork.ApartmentRepository.GetWithInclude(id, e => e.Id == id,
+                 query => query.Include(p => p.Agency).ThenInclude(ay => ay.Owner),
+                 query => query.Include(p => p.Agent).ThenInclude(ag => ag.User)
+                );
+                if (Apartment == null)
+                {
+                    return NotFound();
+                }
+
+                var ApartmentDto = (Apartment).Adapt<ApartmentResponseDTO>();
+
+
+                return Ok(ApartmentDto);
+            }
+            else
+                return NotFound();
         }
 
     }
