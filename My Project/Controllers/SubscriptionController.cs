@@ -59,9 +59,9 @@ namespace My_Project.Controllers
             {
                 return NotFound(new { message = "Subscription not found" });
             }
-            if (subscription.StartDate.AddMonths(subscription.DurationMonths) <= DateTime.Now)
+            if (subscription.StartDate.AddMonths(subscription.DurationMonths) >= DateTime.Now)
             {
-                subscription.IsActive = false;
+                subscription.IsActive = true;
                 _unitOfWork.Save();
             }
 
@@ -114,7 +114,9 @@ namespace My_Project.Controllers
 
             return Ok(subscriptions);
         }
-       
+
+      
+
 
     }
 

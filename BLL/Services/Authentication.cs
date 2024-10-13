@@ -143,8 +143,6 @@ namespace BLL.Services
             if (result.Succeeded)
             {
 
-          //      var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
-
                 if (registerRequest.AccountType == "Agency")
                 {
                     IEnumerable<string> Roles = new List<string> { "Agency" };

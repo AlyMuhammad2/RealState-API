@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using My_Project.Common;
 using My_Project.DTO;
+using System.Linq;
 using System.Linq.Dynamic.Core;
 using YourProjectNamespace.Models;
 
@@ -120,7 +121,7 @@ namespace My_Project.Controllers
                 return Conflict("The agent has already been deleted or updated by another process.");
             }
 
-            return Ok("Agency deleted successfully.");
+            return Ok();
         }
         [HttpPost("add-agency")]
         //[Authorize(Roles = "Admin")]
@@ -247,6 +248,7 @@ namespace My_Project.Controllers
                query => query.Include(p => p.User),
                  query => query.Include(p => p.Agency),
                    query => query.Include(p => p.Products),
+                    query => query.Include(p => p.Subscription),
                      query => query.Include(p => p.Tasks)
                               ).AsQueryable();
 
@@ -269,5 +271,64 @@ namespace My_Project.Controllers
             });
 
             }
+        [HttpGet("subscriptions")]
+        public IActionResult GetAllSubscriptions([FromQuery] RequestFilters filters)
+        {
+            // Get agency and agent subscriptions
+            var agencySubscriptions =  _unitOfWork.AgencyRepository.GetAllWithInclude(
+                  query => query.Where(x => string.IsNullOrEmpty(filters.SearchValue) ||
+                                       x.Name.Contains(filters.SearchValue)),
+                 query => query.Include(p => p.Owner),
+                     query => query.Include(p => p.Subscription),
+                   query => query.Where(p => p.SubscriptionId!=null)
+
+               ).AsQueryable();
+            var agentSubscriptions = _unitOfWork.AgentRepository.GetAllWithInclude(
+                   query => query.Where(x => string.IsNullOrEmpty(filters.SearchValue) ||
+                                                      x.User.UserName.Contains(filters.SearchValue) ||
+                                                      x.Agency.Name.Contains(filters.SearchValue)),
+               query => query.Include(p => p.User),      
+                   query => query.Include(p => p.Subscription),
+                   query => query.Where(p => p.SubscriptionId != null)
+
+                              ).AsQueryable();
+
+            var agencySubscriptionDtos = agencySubscriptions.Adapt<List<subscriptionDto>>();
+
+            // Map agent subscriptions to DTO using Mapster
+            var agentSubscriptionDtos = agentSubscriptions.Adapt<List<subscriptionDto>>();
+
+            // Combine both lists into one
+            var allSubscriptions = new List<subscriptionDto>();
+
+            // Add your subscriptions to the list...
+
+            // Apply sorting if filters are provided
+          
+            allSubscriptions.AddRange(agencySubscriptionDtos);
+            allSubscriptions.AddRange(agentSubscriptionDtos);
+
+            foreach (var subscription in allSubscriptions)
+            {
+                subscription.CalculateIsActive();
+            }
+            var totalItems = allSubscriptions.Count();
+
+            if (totalItems == 0)
+            {
+                return NotFound("No subscriptions found.");
+            }
+
+            // Apply pagination
+            var paginatedSubscriptions = PaginatedList<subscriptionDto>.Create(allSubscriptions.AsQueryable(), filters.pageNumber, filters.pageSize);
+
+            // Return paginated result
+            return Ok(new
+            {
+                TotalItems = totalItems,   // Return total count of items
+                Items = paginatedSubscriptions.Items // Return paginated items
+            });
+        }
+
     }
 }

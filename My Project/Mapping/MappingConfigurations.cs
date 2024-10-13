@@ -90,6 +90,28 @@ namespace My_Project.Mapping
                                   .Map(dest => dest.SubId, src => src.Id);;
             config.NewConfig<Subscription, SubscriptionResponseDTO>()
                   .Map(dest => dest.SubId, src => src.Id);
+            config.NewConfig<Agency, subscriptionDto>()
+               .Map(dest => dest.SubscriptionId, src => src.Subscription.Id)
+               .Map(dest => dest.SubscriberName, src => src.Owner.UserName)
+               .Map(dest => dest.StartDate, src => src.Subscription.StartDate)
+               .Map(dest => dest.SubscriberType, src => src.Subscription.UserType)
+               .Map(dest => dest.Durationmonth, src => src.Subscription.DurationMonths)
+               .Map(dest => dest.Amount, src => src.Subscription.Price)
+               .Map(dest => dest.SubscriptionType, src => src.Subscription.SubscriptionType)
+               .Map(dest => dest.IsActive, src => src.Subscription.IsActive);
+
+
+
+            config.NewConfig<Agent, subscriptionDto>()
+              .Map(dest => dest.SubscriptionId, src => src.Subscription.Id)
+              .Map(dest => dest.SubscriberName, src => src.User.UserName)
+              .Map(dest => dest.StartDate, src => src.Subscription.StartDate)
+              .Map(dest => dest.SubscriberType, src => src.Subscription.UserType)
+              .Map(dest => dest.Durationmonth, src => src.Subscription.DurationMonths)
+              .Map(dest => dest.Amount, src => src.Subscription.Price)
+              .Map(dest => dest.SubscriptionType, src => src.Subscription.SubscriptionType)
+              .Map(dest => dest.IsActive, src => src.Subscription.IsActive)             ;
+
 
 
 

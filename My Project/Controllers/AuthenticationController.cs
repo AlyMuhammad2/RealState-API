@@ -30,6 +30,7 @@ namespace My_Project.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterReq registerRequest, CancellationToken cancellationToken)
         {
+
             var result = await Authentication.Register(registerRequest, cancellationToken);
             return result == null ? BadRequest("Invalid Email or Password") : Ok(result);
 

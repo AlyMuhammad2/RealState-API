@@ -143,6 +143,7 @@ namespace My_Project.Controllers
                         Agent subagent = _unitOfWork.AgentRepository.FilterIncluded("User", a => a.User.Email == userEmail);
 
                         subagent.Subscription = sub;
+                    
                     }
 
                 _unitOfWork.Save();
