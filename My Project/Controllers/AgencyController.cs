@@ -96,7 +96,7 @@ namespace My_Project.Controllers
             {
                 Email = NewAgent.Email,
                 UserName = NewAgent.Name,
-                PhoneNumber=NewAgent.PhoneNumber
+                PhoneNumber=NewAgent.phoneNumber,
 
 
             };

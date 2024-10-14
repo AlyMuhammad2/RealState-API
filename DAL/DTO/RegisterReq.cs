@@ -9,10 +9,11 @@ namespace DAL.DTO
     public record RegisterReq
     (
         string Name,
+        string? AgencyName,
         string Email , 
         string Password, 
         string ConfirmPassword,
-        string PhoneNumber,
+        string phoneNumber,
         string AccountType
     );
    

@@ -134,7 +134,7 @@ namespace BLL.Services
             {  
                 Email = registerRequest.Email,
                 UserName = registerRequest.Name,
-
+                PhoneNumber=registerRequest.phoneNumber,
 
                
             };
@@ -164,7 +164,7 @@ namespace BLL.Services
                     }
                     var agency = new Agency
                     {
-                        Name = registerRequest.Name,
+                        Name = registerRequest.AgencyName,
                         OwnerId = user.Id,
                         CreatedDate = DateTime.Now,
                         SubscriptionId = null

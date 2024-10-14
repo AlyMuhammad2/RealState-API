@@ -33,8 +33,8 @@
         public bool HasElevatorAccess { get; set; } // هل يوجد مصعد؟
 
 
-        public int AgencyId { get; set; }
+        public int? AgencyId { get; set; }
 
-        public int AgentId { get; set; }
+        public int? AgentId { get; set; }
     }
 }
